@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {loginWs} from '../services/auth-ws'
+import { addHabitWs } from "../services/habitWs";
 
 import {
   Avatar,
@@ -12,17 +12,26 @@ import {
   Typography,
   Container,
 } from "@mui/material";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import { AddTask } from "@mui/icons-material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const theme = createTheme();
 
 export default function HabitForm() {
-
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [reason, setReason] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const response = { title, description, reason };
 
+    try {
+      const data = await addHabitWs(response);
+      console.log(data);
+    } catch (error) {
+      console.log(error.response.data);
+    }
   };
 
   return (
@@ -37,11 +46,11 @@ export default function HabitForm() {
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
+          <Avatar sx={{ m: 1, color: "green" }}>
+            <AddTask />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            create a micro habit
           </Typography>
           <Box
             component="form"
@@ -53,21 +62,41 @@ export default function HabitForm() {
               margin="normal"
               required
               fullWidth
-              id="username"
-              label="Username"
-              name="username"
-              autoComplete="username"
+              id="title"
+              label="Title"
+              name="title"
+              autoComplete="title"
+              placeholder="add a title for the micro habit"
               autoFocus
+              onChange={(e) => setTitle(e.target.value)}
             />
             <TextField
               margin="normal"
               required
               fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
+              multiline
+              maxRows={5}
+              name="description"
+              label="Description"
+              type="description"
+              id="description"
+              autoComplete="description"
+              placeholder="add at least 40 characters of description"
+              onChange={(e) => setDescription(e.target.value)}
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              multiline
+              maxRows={3}
+              name="reason"
+              label="Reason"
+              type="reason"
+              id="reason"
+              autoComplete="reason"
+              placeholder="please describe a reason to do it"
+              onChange={(e) => setReason(e.target.value)}
             />
             <Button
               type="submit"
@@ -75,7 +104,7 @@ export default function HabitForm() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              Create
             </Button>
             <Grid container>
               <Grid item xs>

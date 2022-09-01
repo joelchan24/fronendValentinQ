@@ -1,14 +1,14 @@
 import { api } from './api'
-import axios from 'axios'
 
-// allHabits
+
+//! read all habits
 export const allHabitsWs = () => api.get('/habit/allhabits')
 
-// addHabit
+//* create habit
 export const addHabitWs = (data) => api.post('/habit/addHabit', data)
 
-// edit-Habit
+//! update habit
 export const editHabitWs = (data) => api.post('/habit/edit-habit/:id', data)
 
-// delete-habit           //? Checar si lleva data
+//! delete habit           //? Checar si lleva data
 export const deleteHabitWs = () => api.delete('/habit/delete-habit/:id')
