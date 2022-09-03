@@ -12,10 +12,7 @@ import {
   Typography,
   Container,
 } from "@mui/material";
-import { AddTask } from "@mui/icons-material";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-
-const theme = createTheme();
+import AddBoxTwoToneIcon from '@mui/icons-material/AddBoxTwoTone';
 
 export default function HabitForm() {
   const [title, setTitle] = useState("");
@@ -28,26 +25,28 @@ export default function HabitForm() {
 
     try {
       const data = await addHabitWs(response);
-      console.log(data);
+      console.log('que es data  ---> ',data);
+      alert("TESTING SUCCESS");
     } catch (error) {
-      console.log(error.response.data);
+      console.log(error.response.data.errorMessage);
+      alert(`ERROR : ${error.response.data.errorMessage}`);
     }
   };
 
   return (
-    <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
           sx={{
             marginTop: 8,
+            marginBottom:8,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, color: "green" }}>
-            <AddTask />
+          <Avatar sx={{ m: 1,  bgcolor:"secondary.main"}} >
+            <AddBoxTwoToneIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
             create a micro habit
@@ -121,6 +120,5 @@ export default function HabitForm() {
           </Box>
         </Box>
       </Container>
-    </ThemeProvider>
   );
 }

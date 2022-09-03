@@ -9,10 +9,7 @@ import {
   Typography,
   Container,
 } from "@mui/material";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import AddCommentIcon from "@mui/icons-material/AddComment";
-
-const theme = createTheme();
+import InsertCommentTwoToneIcon from '@mui/icons-material/InsertCommentTwoTone';
 
 export default function CommunityForm() {
   const [comment, setComment] = useState("");
@@ -23,14 +20,15 @@ export default function CommunityForm() {
 
     try {
       const data = await addPostWs(response);
-      console.log(data);
+      console.log('que es data --->',data);
+      alert("TESTING SUCCESS");
     } catch (error) {
-      console.log(error.response.data);
+      console.log(error.response.data.errorMessage);
+      alert(`ERROR : ${error.response.data.errorMessage}`);
     }
   };
 
   return (
-    <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -41,8 +39,8 @@ export default function CommunityForm() {
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <AddCommentIcon />
+          <Avatar sx={{ m: 1, bgcolor: "secondary.light" }}>
+            <InsertCommentTwoToneIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
             Create a Post
@@ -57,10 +55,12 @@ export default function CommunityForm() {
               margin="normal"
               required
               fullWidth
-              name="password"
+              multiline
+              maxRows={5}
+              name="post"
               label="Create a post"
-              id="password"
-              autoComplete="current-password"
+              id="post"
+              autoComplete="current-post"
               onChange={(e) => setComment(e.target.value)}
             />
             <Button
@@ -74,6 +74,5 @@ export default function CommunityForm() {
           </Box>
         </Box>
       </Container>
-    </ThemeProvider>
   );
 }
