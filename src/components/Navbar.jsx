@@ -66,7 +66,7 @@ export default function Navbar({ pebblesUser, handleLogout }) {
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 , ml:8 }}>
             <Link href="/" color="inherit">
-              PEBBLES.
+              <img src="https://res.cloudinary.com/duavnrhnp/image/upload/v1662220313/micro-habits/Untitled_design_4_nkmzow.png" width={160} alt="" />
             </Link>
           </Typography>
 

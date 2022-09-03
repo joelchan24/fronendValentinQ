@@ -1,4 +1,4 @@
-import {LoginPage, SignUpPage, HomePage} from "../pages"
+import {LoginPage, SignUpPage, HomePage, ProfilePage} from "../pages"
 
 export default function routes(props){
   
@@ -14,6 +14,10 @@ export default function routes(props){
     {
       path: '/signup',
       element: <SignUpPage {...props} />
+    },
+    {
+      path: '/profile',
+      element: <ProfilePage {...props} />
     }
   ]
 }

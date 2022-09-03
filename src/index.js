@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import { ThemeProvider, createTheme } from "@mui/material";
+import { BrowserRouter as Router } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -13,17 +14,19 @@ const theme = createTheme({
       dark: "#3B71BA",
     },
     secondary: {
-      main: "#E999BA",
-      light: "#FFD1E4",
-      dark: "#C57294",
+      main: "#D3749B",
+      light: "#E895B7",
+      dark: "#BE698C",
     },
   },
 });
 
 root.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
+    <Router>
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
+    </Router>
   </React.StrictMode>
 );

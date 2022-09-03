@@ -39,7 +39,7 @@ export default function CommunityForm() {
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.light" }}>
+          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
             <InsertCommentTwoToneIcon />
           </Avatar>
           <Typography component="h1" variant="h5">

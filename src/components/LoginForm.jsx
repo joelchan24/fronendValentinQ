@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { loginWs } from "../services/auth-ws";
+import { useNavigate } from "react-router-dom";
 
 import {
   Avatar,
@@ -18,6 +19,8 @@ export default function LoginForm(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = { username, password };
@@ -26,10 +29,12 @@ export default function LoginForm(props) {
       const { data } = await loginWs(response);
       console.log("que es data ---->", data.user);
       props.authentication(data.user);
-      alert("SUCCESS::: TESTING ");
+      navigate("/profile");
+
     } catch (error) {
       console.log(error.response.data.errorMessage);
       alert(`ERROR : ${error.response.data.errorMessage}`);
+
     }
   };
 
