@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { addPostWs } from "../services/communityWs";
+import { addPostWs } from "../../services/communityWs";
 import {
   Avatar,
   Button,

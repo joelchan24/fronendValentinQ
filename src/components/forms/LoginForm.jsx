@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { loginWs } from "../services/auth-ws";
+import { loginWs } from "../../services/auth-ws";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -27,7 +27,7 @@ export default function LoginForm(props) {
 
     try {
       const { data } = await loginWs(response);
-      console.log("que es data ---->", data.user);
+      console.log("que es data en login ---->", data.user);
       props.authentication(data.user);
       navigate("/profile");
 

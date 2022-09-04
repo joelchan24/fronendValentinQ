@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { signupWs } from "../services/auth-ws";
+import { signupWs } from "../../services/auth-ws";
 import { useNavigate } from 'react-router-dom'
 import {
   Avatar,
@@ -11,8 +11,6 @@ import {
   Box,
   Typography,
   Container,
-  Alert,
-  AlertTitle,
 } from "@mui/material";
 import LockPersonTwoToneIcon from "@mui/icons-material/LockPersonTwoTone";
 
@@ -23,6 +21,8 @@ export default function SignUpForm(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,9 +37,10 @@ export default function SignUpForm(props) {
 
     try {
       const { data } = await signupWs(response);
-      console.log("que es data.user", data.user);
+      console.log("que es data en signup ---->", data);
       props.authentication(data.user);
       alert("TESTING SUCCESS");
+      navigate("/profile")
     } catch (error) {
       console.log(error.response.data.errorMessage);
       alert(`ERROR : ${error.response.data.errorMessage}`);

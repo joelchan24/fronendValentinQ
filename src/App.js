@@ -17,7 +17,7 @@ function App() {
   const handleLogout = async () => {
     try {
       const res = await logoutWs();
-      console.log(res);
+      console.log('res del logout --->', res);
       alert("LOGOUT SUCCESS");
       navigate('/')
       setPebblesUser(null);

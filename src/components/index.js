@@ -1,5 +1,7 @@
 export {default as Navbar} from './Navbar'
-export {default as LoginForm} from './LoginForm'
-export {default as SignUpForm} from './SignUpForm'
-export {default as HabitForm} from './HabitForm'
-export {default as CommunityForm} from './CommunityForm';
+export {default as LoginForm} from './forms/LoginForm.jsx'
+export {default as SignUpForm} from './forms/SignUpForm.jsx'
+export {default as HabitForm} from './forms/HabitForm.jsx'
+export {default as CommunityForm} from './forms/CommunityForm.jsx'
+export {default as EditProfileForm} from './forms/EditProfileForm.jsx'
+

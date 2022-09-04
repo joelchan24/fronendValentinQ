@@ -1,11 +1,9 @@
-import { CommunityForm, HabitForm } from "../components";
+import { CommunityForm, HabitForm, EditProfileForm } from "../components";
 
-const HomePage = () => {
+const HomePage = (props) => {
   return (
     <div>
       <h1> Homepage. </h1>
-      <CommunityForm />
-      <HabitForm />
     </div>
   );
 };
