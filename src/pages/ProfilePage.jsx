@@ -16,7 +16,7 @@ const ProfilePage = (props) => {
 
   return (
     <div>
-      <>
+      {!isEdit && (
         <Container component="main" maxWidth="xs">
           <Box
             sx={{
@@ -58,9 +58,9 @@ const ProfilePage = (props) => {
             </Grid>
           </Box>
         </Container>
+      )}
+      {isEdit && <EditProfileForm props={props} setIsEdit={setIsEdit} />}
 
-        {isEdit && <EditProfileForm props={props} setIsEdit={setIsEdit} />}
-      </>
       {props.pebblesUser.role === "Admin" && <HabitForm />}
     </div>
   );

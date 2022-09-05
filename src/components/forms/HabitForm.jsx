@@ -6,8 +6,6 @@ import {
   Button,
   TextField,
   CssBaseline,
-  Link,
-  Grid,
   Box,
   Typography,
   Container,
@@ -27,6 +25,9 @@ export default function HabitForm() {
       const data = await addHabitWs(response);
       console.log('que es data  ---> ',data);
       alert("TESTING SUCCESS");
+      setTitle('')
+      setDescription('')
+      setReason('')
     } catch (error) {
       console.log(error.response.data.errorMessage);
       alert(`ERROR : ${error.response.data.errorMessage}`);
@@ -49,7 +50,7 @@ export default function HabitForm() {
             <AddBoxTwoToneIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            create a micro habit
+            create micro habit
           </Typography>
           <Box
             component="form"
@@ -64,6 +65,7 @@ export default function HabitForm() {
               id="title"
               label="Title"
               name="title"
+              value={title}
               autoComplete="title"
               placeholder="add a title for the micro habit"
               autoFocus
@@ -77,6 +79,7 @@ export default function HabitForm() {
               maxRows={5}
               name="description"
               label="Description"
+              value={description}
               type="description"
               id="description"
               autoComplete="description"
@@ -91,6 +94,7 @@ export default function HabitForm() {
               maxRows={3}
               name="reason"
               label="Reason"
+              value={reason}
               type="reason"
               id="reason"
               autoComplete="reason"
@@ -105,18 +109,6 @@ export default function HabitForm() {
             >
               Create
             </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
           </Box>
         </Box>
       </Container>

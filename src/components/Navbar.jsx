@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import {useNavigate} from 'react-router-dom'
 import {
   AppBar,
   Box,
@@ -17,7 +18,9 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 
+//
 export default function Navbar({ pebblesUser, handleLogout }) {
+  const navigate = useNavigate()
   const [open, setOpen] = useState(false);
   const anchorRef = useRef(null);
 
@@ -29,7 +32,6 @@ export default function Navbar({ pebblesUser, handleLogout }) {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
-    handleLogout();
     setOpen(false);
   };
 
@@ -64,9 +66,13 @@ export default function Navbar({ pebblesUser, handleLogout }) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 , ml:8 }}>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1, ml: 8 }}>
             <Link href="/" color="inherit">
-              <img src="https://res.cloudinary.com/duavnrhnp/image/upload/v1662220313/micro-habits/Untitled_design_4_nkmzow.png" width={160} alt="" />
+              <img
+                src="https://res.cloudinary.com/duavnrhnp/image/upload/v1662220313/micro-habits/Untitled_design_4_nkmzow.png"
+                width={160}
+                alt=""
+              />
             </Link>
           </Typography>
 
@@ -121,11 +127,10 @@ export default function Navbar({ pebblesUser, handleLogout }) {
                             aria-labelledby="composition-button"
                             onKeyDown={handleListKeyDown}
                           >
-                            <MenuItem onClick={handleClose}>Profile</MenuItem>
-                            <MenuItem onClick={handleClose}>
-                              My account
+                            <MenuItem onClick={() => navigate('/profile')}>Profile</MenuItem>
+                            <MenuItem onClick={() => handleLogout()}>
+                              Logout
                             </MenuItem>
-                            <MenuItem onClick={handleClose}>Logout</MenuItem>
                           </MenuList>
                         </ClickAwayListener>
                       </Paper>
