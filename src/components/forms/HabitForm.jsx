@@ -50,7 +50,7 @@ export default function HabitForm() {
             <AddBoxTwoToneIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            create micro habit
+            create micro habit (admin only)
           </Typography>
           <Box
             component="form"

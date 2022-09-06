@@ -14,6 +14,10 @@ import {
 const ProfilePage = (props) => {
   const [isEdit, setIsEdit] = useState(false);
 
+  const [showName, setShowName] = useState(props.pebblesUser.firstName)
+  const [showLastName, setShowLastName] = useState(props.pebblesUser.lastName)
+  const [showUsername, setShowUsername] = useState(props.pebblesUser.username)
+
   return (
     <div>
       {!isEdit && (
@@ -27,7 +31,7 @@ const ProfilePage = (props) => {
             }}
           >
             <Typography variant="h4">
-              {props.pebblesUser.username}'s profile
+              {showUsername}'s profile
             </Typography>
             <Grid item xs={8}>
               <Avatar
@@ -35,8 +39,8 @@ const ProfilePage = (props) => {
                 sx={{ width: 100, height: 100 }}
               />
               <Typography variant="subtitle1">
-                Full Name: {props.pebblesUser.firstName}{" "}
-                {props.pebblesUser.lastName}
+                Full Name: {showName}{" "}
+                {showLastName}
               </Typography>
               <Typography variant="subtitle1">
                 Username: {props.pebblesUser.username}
@@ -59,7 +63,7 @@ const ProfilePage = (props) => {
           </Box>
         </Container>
       )}
-      {isEdit && <EditProfileForm props={props} setIsEdit={setIsEdit} />}
+      {isEdit && <EditProfileForm props={props} setIsEdit={setIsEdit} setShowName={setShowName} setShowLastName={setShowLastName} setShowUsername={setShowUsername} />}
 
       {props.pebblesUser.role === "Admin" && <HabitForm />}
     </div>

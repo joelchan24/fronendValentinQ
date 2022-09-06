@@ -11,7 +11,13 @@ import {
   Container,
 } from "@mui/material";
 
-export default function EditProfileForm({ props, setIsEdit }) {
+export default function EditProfileForm({
+  props,
+  setIsEdit,
+  setShowName,
+  setShowLastName,
+  setShowUsername,
+}) {
   const [firstName, setFirstName] = useState(props.pebblesUser.firstName);
   const [lastName, setLastName] = useState(props.pebblesUser.lastName);
   const [username, setUsername] = useState(props.pebblesUser.username);
@@ -24,6 +30,9 @@ export default function EditProfileForm({ props, setIsEdit }) {
         lastName,
         username,
       });
+      setShowLastName(lastName)
+      setShowName(firstName)
+      setShowUsername(username)
       setIsEdit((prevState) => !prevState);
     } catch (error) {
       console.log(error.response.data.errorMessage);
