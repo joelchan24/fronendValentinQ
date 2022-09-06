@@ -32,14 +32,22 @@ export default function Navbar({ pebblesUser, handleLogout }) {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
-    if (event.target.textContent === "Profile") {
-      navigate("/profile");
-    }
-    if(event.target.textContent === "Micro-Habits"){
-      navigate('/habits')
-    }
-    if (event.target.textContent === "Logout") {
-      handleLogout();
+
+    switch(event.target.textContent){
+      case 'Profile':
+        navigate('/profile')
+        break;
+      case 'Micro-Habits':
+        navigate('/habits')
+        break;
+      case 'Community':
+        navigate('/community')
+        break;
+      case 'Logout':
+        handleLogout()
+        break;
+        default:
+        setOpen(false)
     }
     setOpen(false);
   };
@@ -126,8 +134,11 @@ export default function Navbar({ pebblesUser, handleLogout }) {
                             onKeyDown={handleListKeyDown}
                           >
                             <MenuItem onClick={handleClose}>Profile</MenuItem>
+                            <MenuItem onClick={handleClose}>
+                              Micro-Habits
+                            </MenuItem>
+                            <MenuItem onClick={handleClose}>Community</MenuItem>
                             <MenuItem onClick={handleClose}>Logout</MenuItem>
-                            <MenuItem onClick={handleClose}>Micro-Habits</MenuItem>
                           </MenuList>
                         </ClickAwayListener>
                       </Paper>

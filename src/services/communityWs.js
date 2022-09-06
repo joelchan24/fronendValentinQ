@@ -7,7 +7,8 @@ export const allPostsWs = () => api.get("/community/allPosts");
 export const addPostWs = (data) => api.post("/community/communityPost", data);
 
 //! update post
-export const editPostWs = (data) => api.post("/community/updatePost/:id");
+export const editPostWs = (id) => api.patch(`/community/updatePost/${id}`);
 
-//! delete post               //? Checar si lleva data
-export const deletePostWs = () => api.delete("/community/deletePost/:id");
+// ! delete post
+export const deletePostWs = (id) => api.delete(`/community/deletePost/${id}`);
+

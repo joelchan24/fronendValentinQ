@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import InsertCommentTwoToneIcon from '@mui/icons-material/InsertCommentTwoTone';
 
-export default function CommunityForm() {
+export default function EditPostForm(props) {
   const [comment, setComment] = useState("");
 
   const handleSubmit = async (e) => {
@@ -43,7 +43,7 @@ export default function CommunityForm() {
             <InsertCommentTwoToneIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Create a Post
+            Edit your Post
           </Typography>
           <Box
             component="form"
@@ -69,7 +69,7 @@ export default function CommunityForm() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              post
+              edit
             </Button>
           </Box>
         </Box>

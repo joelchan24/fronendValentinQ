@@ -1,4 +1,11 @@
-import { LoginPage, SignUpPage, HomePage, ProfilePage, Habit} from "../pages";
+import {
+  LoginPage,
+  SignUpPage,
+  HomePage,
+  ProfilePage,
+  Habit,
+  Community,
+} from "../pages";
 
 export default function routes(props) {
   return [
@@ -19,8 +26,12 @@ export default function routes(props) {
       element: <ProfilePage {...props} />,
     },
     {
-      path:'/habits',
-      element: <Habit {...props}  />
-    }
+      path: "/habits",
+      element: <Habit {...props} />,
+    },
+    {
+      path: "/community",
+      element: <Community {...props} />,
+    },
   ];
 }

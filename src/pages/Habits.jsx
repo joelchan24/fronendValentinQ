@@ -28,8 +28,6 @@ const Habits = (props) => {
     }
   };
 
-  console.log(habits[0].created)
-
   return (
     <div>
       <h1>Micro-Habits</h1>
