@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 import {
   AppBar,
   Box,
@@ -20,7 +20,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 
 //
 export default function Navbar({ pebblesUser, handleLogout }) {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const anchorRef = useRef(null);
 
@@ -32,11 +32,14 @@ export default function Navbar({ pebblesUser, handleLogout }) {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
-    if(event.target.textContent === 'Profile'){
-      navigate('/profile')
+    if (event.target.textContent === "Profile") {
+      navigate("/profile");
     }
-    if(event.target.textContent === 'Logout'){
-      handleLogout()
+    if(event.target.textContent === "Micro-Habits"){
+      navigate('/habits')
+    }
+    if (event.target.textContent === "Logout") {
+      handleLogout();
     }
     setOpen(false);
   };
@@ -62,7 +65,6 @@ export default function Navbar({ pebblesUser, handleLogout }) {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-
           <Typography variant="h6" component="div" sx={{ flexGrow: 1, ml: 14 }}>
             <Link href="/" color="inherit">
               <img
@@ -122,13 +124,12 @@ export default function Navbar({ pebblesUser, handleLogout }) {
                             id="composition-menu"
                             aria-labelledby="composition-button"
                             onKeyDown={handleListKeyDown}
-                          > 
+                          >
                             <MenuItem onClick={handleClose}>Profile</MenuItem>
-                            <MenuItem onClick={handleClose}>
-                              Logout
-                            </MenuItem>
+                            <MenuItem onClick={handleClose}>Logout</MenuItem>
+                            <MenuItem onClick={handleClose}>Micro-Habits</MenuItem>
                           </MenuList>
-                        </ClickAwayListener> 
+                        </ClickAwayListener>
                       </Paper>
                     </Grow>
                   )}

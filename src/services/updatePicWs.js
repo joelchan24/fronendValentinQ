@@ -1,5 +1,4 @@
 import { api } from './api'
-import axios from 'axios'
 
 //! upload multiple images
 export const multipleImagesWs = (data) => api.post('/upload/uploads',data)

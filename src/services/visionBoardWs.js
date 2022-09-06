@@ -1,5 +1,4 @@
 import { api } from './api'
-import axios from 'axios'
 
 //! Create VisionBoard
 export const createVisionWs = (data) => api.post('visionBoard/createVision', data) 
