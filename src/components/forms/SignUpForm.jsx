@@ -22,7 +22,10 @@ export default function SignUpForm(props) {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+
   const navigate = useNavigate()
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -72,6 +75,7 @@ export default function SignUpForm(props) {
                 name="firstName"
                 required
                 fullWidth
+                color="secondary"
                 id="firstName"
                 label="First Name"
                 autoFocus
@@ -81,6 +85,7 @@ export default function SignUpForm(props) {
             <Grid item xs={12} sm={6}>
               <TextField
                 required
+                color="secondary"
                 fullWidth
                 id="lastName"
                 label="Last Name"
@@ -92,6 +97,7 @@ export default function SignUpForm(props) {
             <Grid item xs={12}>
               <TextField
                 required
+                color="secondary"
                 fullWidth
                 id="email"
                 label="Email Address"
@@ -103,6 +109,7 @@ export default function SignUpForm(props) {
             <Grid item xs={12}>
               <TextField
                 required
+                color="secondary"
                 fullWidth
                 id="username"
                 label="Username"
@@ -114,6 +121,7 @@ export default function SignUpForm(props) {
             <Grid item xs={12}>
               <TextField
                 required
+                color="secondary"
                 fullWidth
                 name="password"
                 label="Password"
@@ -126,6 +134,7 @@ export default function SignUpForm(props) {
             <Grid item xs={12}>
               <TextField
                 required
+                color="secondary"
                 fullWidth
                 name="confirmPassword"
                 label="Confirm Password"
@@ -138,6 +147,7 @@ export default function SignUpForm(props) {
           </Grid>
           <Button
             type="submit"
+            color="secondary"
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}

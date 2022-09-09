@@ -4,4 +4,13 @@
 }
 .App {
   text-align: center;
+  background-color: #FFFFFB;
+}
+h1,h2,h3,h4,h5,h6,p{
+  color: #04224C;
+}
+.MuiCard-root{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }

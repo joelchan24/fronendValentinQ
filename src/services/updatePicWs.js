@@ -7,4 +7,4 @@ export const multipleImagesWs = (data) => api.post('/upload/uploads',data)
 export const singleImageWs = (data) => api.post('/upload/single',data)
 
 //! delete image
-export const deleteImageWs = () => api.delete('/upload/deleteImages/:name')
+export const deleteImageWs = (name) => api.delete(`/upload/deleteImages/${name}`)

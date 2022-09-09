@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { CreatePostForm, EditPostForm } from "../components";
+import { CreatePostForm } from "../components";
 import { allPostsWs, deletePostWs } from "../services/communityWs";
-import { Paper } from "@mui/material";
+import { Delete } from "@mui/icons-material";
+import { Paper, Button, Box, Typography } from "@mui/material";
 
 const Community = (props) => {
   const [comments, setComments] = useState([]);
@@ -27,8 +28,8 @@ const Community = (props) => {
 
   const deleteData = async (id) => {
     try {
-      await deletePostWs(id)
-      deletePost(id)
+      await deletePostWs(id);
+      deletePost(id);
     } catch (error) {
       console.log(error.response.data.errorMessage);
       alert(`ERROR : ${error.response.data.errorMessage}`);
@@ -36,29 +37,76 @@ const Community = (props) => {
   };
 
   return (
-    <div>
-      <h1>Community</h1>
+    <Box>
+      <Typography variant="h2" align="center">
+        Community
+      </Typography>
       <CreatePostForm setComments={setComments} />
-
-      <ul>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          flexWrap: "wrap",
+          "& > :not(style)": {
+            m: 1,
+            width: 600,
+            height: 128,
+          },
+        }}
+      >
         {comments.map((comment) => (
-          <li>
-            {comment.comment}
+          <Paper
+            sx={{
+              padding: 1,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <Typography variant="body1">{comment.comment}</Typography>
 
-            {comment.author === props.pebblesUser.username && (
-              <button onClick={() => deleteData(comment._id)}> Delete </button>
+            {comment.author === props.pebblesUser.username ? (
+              <Box
+                sx={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "flex-end",
+                }}
+              >
+                <Button
+                  color="secondary"
+                  variant="outlined"
+                  size="small"
+                  startIcon={<Delete />}
+                  onClick={() => deleteData(comment._id)}
+                >
+                  Delete
+                </Button>
+              </Box>
+            ) : (
+              <Box
+                sx={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "flex-end",
+                }}
+              >
+                <Typography> By: {comment.author} </Typography>
+              </Box>
             )}
-
-            {/* {comment.author === props.pebblesUser.username && (
-              <button  > Edit </button>
-            )} */}
-          </li>
+          </Paper>
         ))}
-      </ul>
-
-      <div></div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 
 export default Community;
+
+/* 
+
+
+
+*/

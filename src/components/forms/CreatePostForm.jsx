@@ -1,18 +1,29 @@
 import { useState } from "react";
 import { addPostWs } from "../../services/communityWs";
+import { allPostsWs } from "../../services/communityWs";
+import PostAddIcon from "@mui/icons-material/PostAdd";
 import {
   Avatar,
   Button,
   CssBaseline,
   TextField,
   Box,
-  Typography,
   Container,
 } from "@mui/material";
-import InsertCommentTwoToneIcon from '@mui/icons-material/InsertCommentTwoTone';
+import InsertCommentTwoToneIcon from "@mui/icons-material/InsertCommentTwoTone";
 
-export default function CreatePostForm(props) {
+export default function CreatePostForm({ setComments }) {
   const [comment, setComment] = useState("");
+
+  const getAllPosts = async () => {
+    try {
+      const res = await allPostsWs();
+      setComments(res.data.posts);
+    } catch (error) {
+      console.log(error.response.data.errorMessage);
+      alert(`ERROR : ${error.response.data.errorMessage}`);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,7 +31,9 @@ export default function CreatePostForm(props) {
 
     try {
       const data = await addPostWs(response);
-      console.log('que es data --->',data);
+      getAllPosts();
+      console.log("que es data --->", data);
+      setComment("");
       alert("TESTING SUCCESS");
     } catch (error) {
       console.log(error.response.data.errorMessage);
@@ -29,50 +42,46 @@ export default function CreatePostForm(props) {
   };
 
   return (
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <InsertCommentTwoToneIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Create a Post
-          </Typography>
-          <Box
-            component="form"
-            onSubmit={handleSubmit}
-            noValidate
-            sx={{ mt: 1 }}
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <Box
+        sx={{
+          marginTop: 2,
+          marginBottom: 2,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <Avatar sx={{ m: 1, bgcolor: "secondary.main", width: 56, height:56 }}>
+          <InsertCommentTwoToneIcon />
+        </Avatar>
+        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            multiline
+            color="secondary"
+            rows={3}
+            name="post"
+            label="Create a post"
+            id="post"
+            value={comment}
+            autoComplete="current-post"
+            onChange={(e) => setComment(e.target.value)}
+          />
+          <Button
+            type="submit"
+            fullWidth
+            color="secondary"
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
           >
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              multiline
-              maxRows={5}
-              name="post"
-              label="Create a post"
-              id="post"
-              autoComplete="current-post"
-              onChange={(e) => setComment(e.target.value)}
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              post
-            </Button>
-          </Box>
+            Create Post 
+          </Button>
         </Box>
-      </Container>
+      </Box>
+    </Container>
   );
 }

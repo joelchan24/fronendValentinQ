@@ -29,7 +29,13 @@ export default function LoginForm(props) {
       const { data } = await loginWs(response);
       console.log("que es data en login ---->", data.user);
       props.authentication(data.user);
-      navigate("/profile");
+
+      if(data.user.role === 'User'){
+        navigate('/habits')
+      } else {
+        navigate('/profile')
+      }
+
 
     } catch (error) {
       console.log(error.response.data.errorMessage);
@@ -65,6 +71,7 @@ export default function LoginForm(props) {
             name="username"
             autoComplete="username"
             autoFocus
+            color="secondary"
             onChange={(e) => setUsername(e.target.value)}
           />
           <TextField
@@ -76,10 +83,12 @@ export default function LoginForm(props) {
             type="password"
             id="password"
             autoComplete="current-password"
+            color="secondary"
             onChange={(e) => setPassword(e.target.value)}
           />
           <Button
             type="submit"
+            color="secondary"
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}

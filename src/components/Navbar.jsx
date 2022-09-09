@@ -6,7 +6,6 @@ import {
   Toolbar,
   Typography,
   Button,
-  IconButton,
   ClickAwayListener,
   Grow,
   Paper,
@@ -16,7 +15,6 @@ import {
   Stack,
   Link,
 } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
 
 //
 export default function Navbar({ pebblesUser, handleLogout }) {
@@ -33,21 +31,24 @@ export default function Navbar({ pebblesUser, handleLogout }) {
       return;
     }
 
-    switch(event.target.textContent){
-      case 'Profile':
-        navigate('/profile')
+    switch (event.target.textContent) {
+      case "Home":
+        navigate("/");
         break;
-      case 'Micro-Habits':
-        navigate('/habits')
+      case "Profile":
+        navigate("/profile");
         break;
-      case 'Community':
-        navigate('/community')
+      case "Micro-Habits":
+        navigate("/habits");
         break;
-      case 'Logout':
-        handleLogout()
+      case "Community":
+        navigate("/community");
         break;
-        default:
-        setOpen(false)
+      case "Logout":
+        handleLogout();
+        break;
+      default:
+        setOpen(false);
     }
     setOpen(false);
   };
@@ -73,23 +74,37 @@ export default function Navbar({ pebblesUser, handleLogout }) {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1, ml: 14 }}>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1, ml: 10 }}>
             <Link href="/" color="inherit">
               <img
-                src="https://res.cloudinary.com/duavnrhnp/image/upload/v1662220313/micro-habits/Untitled_design_4_nkmzow.png"
-                width={160}
-                alt=""
+                src="https://res.cloudinary.com/duavnrhnp/image/upload/v1662682533/logo_jfqwxp.png"
+                height={35}
+                alt="logo"
               />
             </Link>
           </Typography>
           {!pebblesUser && (
             <>
-              <Link href="/signup" color="inherit" sx={{ mr: 4 }}>
-                {!pebblesUser && "Signup"}
-              </Link>
-              <Link href="/login" color="inherit">
-                {!pebblesUser && "Login"}
-              </Link>
+              <Box mr={2}>
+                <Button
+                  variant="contained"
+                  href="/signup"
+                  color="secondary"
+                  size="small"
+                >
+                  Signup
+                </Button>
+              </Box>
+              <Box ml={2}>
+                <Button
+                  variant="contained"
+                  href="/login"
+                  color="secondary"
+                  size="small"
+                >
+                  Login
+                </Button>
+              </Box>
             </>
           )}
 
@@ -102,7 +117,9 @@ export default function Navbar({ pebblesUser, handleLogout }) {
                   aria-controls={open ? "composition-menu" : undefined}
                   aria-expanded={open ? "true" : undefined}
                   aria-haspopup="true"
-                  color="inherit"
+                  variant="contained"
+                  color="secondary"
+                  size="small"
                   onClick={handleToggle}
                 >
                   Dashboard
@@ -133,6 +150,7 @@ export default function Navbar({ pebblesUser, handleLogout }) {
                             aria-labelledby="composition-button"
                             onKeyDown={handleListKeyDown}
                           >
+                            <MenuItem onClick={handleClose}>Home</MenuItem>
                             <MenuItem onClick={handleClose}>Profile</MenuItem>
                             <MenuItem onClick={handleClose}>
                               Micro-Habits

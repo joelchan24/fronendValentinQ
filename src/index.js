@@ -9,14 +9,14 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#6A95CF",
-      light: "#9DC2F3",
-      dark: "#3B71BA",
+      main: "#FFFCF0",
+      light: "#FFFEF8",
+      dark: "#F4F0D9",
     },
     secondary: {
-      main: "#D3749B",
-      light: "#E895B7",
-      dark: "#BE698C",
+      main: "#073068",
+      light: "#053679",
+      dark: "#04224C",
     },
   },
 });
