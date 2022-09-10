@@ -34,24 +34,22 @@ const Habits = (props) => {
     }
   }
 
-  const styles = {
-    card: {
-      margin:16,
-      display:'flex',
-      flexDirection:'column',
-      justifyContent:'space-between'
-    }
-  }
-
   const [habits, setHabits] = useState([]);
+
+  const [filteringHabits, setFilteringHabits] = useState([]);
 
   useEffect(() => {
     getHabits();
   }, []);
 
+  const allCategories = [
+    ...new Set(habits.map((habit) => habit.timeSuggestion)),
+  ];
+
   const getHabits = async () => {
     const { data } = await allHabitsWs();
     setHabits(data.habits);
+    setFilteringHabits(data.habits);
   };
 
   const deleteHabit = (id) => {
@@ -69,26 +67,45 @@ const Habits = (props) => {
     }
   };
 
+  const filterHabits = (category) => {
+    if (category === "All") {
+      setFilteringHabits(habits);
+      return;
+    }
+    const newHabits = habits.filter((item) => item.timeSuggestion === category);
+    setFilteringHabits(newHabits);
+  };
+
   return (
     <Box>
-      <Typography variant="h2" >Micro-Habits</Typography>
-      <Box sx={{
-        border:'1px solid black',
-        height: 40
-      }} >
-        <Button color="secondary" > Night </Button>
-
+      <Typography variant="h2">Micro-Habits</Typography>
+      <Box
+        sx={{
+          height: 40,
+        }}
+      >
+        <Button color="secondary" onClick={() => filterHabits("All")}>
+          All
+        </Button>
+        {allCategories.map((category) => (
+          <Button color="secondary" onClick={() => filterHabits(category)}>
+            {category}
+          </Button>
+        ))}
       </Box>
-      <Box sx={{
-        display:'flex',
-        flexWrap:'wrap',
-      }} >
-        {habits.map((habit) => (
-          <Card sx={{ 
-            maxWidth: 345, 
-            margin: 2,
+      <Box
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+        }}
+      >
+        {filteringHabits.map((habit) => (
+          <Card
+            sx={{
+              maxWidth: 345,
+              margin: 2,
             }}
-            >
+          >
             <CardMedia
               component="img"
               height="140"
@@ -102,7 +119,12 @@ const Habits = (props) => {
               <Typography variant="body2" color="text.secondary">
                 {habit.description}
               </Typography>
-              <Typography variant="caption" display="block" gutterBottom marginTop={1}>
+              <Typography
+                variant="caption"
+                display="block"
+                gutterBottom
+                marginTop={1}
+              >
                 WHY? {habit.reason}
               </Typography>
             </CardContent>

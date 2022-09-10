@@ -1,13 +1,11 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { updateProfileWs } from "../../services/user-admin-ws";
 import { singleImageWs } from "../../services/updatePicWs";
 
 import {
-  Avatar,
   Button,
   CssBaseline,
   TextField,
-  Grid,
   Box,
   Typography,
   Container,
@@ -22,8 +20,6 @@ export default function EditVisionForm({
   setShowGeneralVision,
 }) {
   const [visionOne, setVisionOne] = useState(props.pebblesUser.visionOne);
-  const [visionTwo, setVisionTwo] = useState(props.pebblesUser.visionTwo);
-  const [visionThree, setVisionThree] = useState(props.pebblesUser.visionThree);
 
   const [generalVision, setGeneralVision] = useState(
     props.pebblesUser.generalVision
@@ -34,20 +30,33 @@ export default function EditVisionForm({
     try {
       await updateProfileWs({
         visionOne,
-        visionTwo,
-        visionThree,
         generalVision,
       });
       setShowVisionOne(visionOne);
-      setShowVisionTwo(visionTwo);
-      setShowVisionThree(visionThree);
       setShowGeneralVision(generalVision);
       setVisionEdit((prevState) => !prevState);
     } catch (error) {
-      console.log(Error);
-      alert(`ERROR : ${error}`);
+      console.log(error.response.data.errorMessage);
+      alert(`ERROR : ${error.response.data.errorMessage}`);
     }
   };
+
+  const elInput = useRef("input");
+
+  const openImage = (e) => { elInput.current.click() };
+
+  const updateImage = async (e) => {
+    console.log('el primer e ---->', e.target)
+    const formData = new FormData();
+    formData.append("image", e.target.files[0]);
+    try {
+      const res = await singleImageWs(formData);
+      setVisionOne(res.data.url.uri);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
 
   return (
     <Container component="main" maxWidth="xs">
@@ -78,51 +87,12 @@ export default function EditVisionForm({
                 alignItems: "center",
               }}
             >
-              <img src={visionOne} width={125} alt="picOne" />
-              <Button
-                variant="contained"
-                component="label"
-                size="small"
-                color="secondary"
-              >
+              <img src={typeof visionOne != "string" ? URL.createObjectURL(visionOne) : visionOne}
+                width={125} alt="picOne"
+              />
+              <input hidden accept="image/*" type="file" ref={elInput} onChange={updateImage} />
+              <Button variant="contained" component="label" size="small" color="secondary" onClick={openImage} >
                 upload
-                <input hidden accept="image/*" multiple type="file" />
-              </Button>
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <img src={visionTwo} width={125} alt="picTwo" />
-              <Button
-                variant="contained"
-                component="label"
-                size="small"
-                color="secondary"
-              >
-                upload
-                <input hidden accept="image/*" multiple type="file" />
-              </Button>
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <img src={visionThree} width={125} alt="picThree" />
-              <Button
-                variant="contained"
-                component="label"
-                size="small"
-                color="secondary"
-              >
-                upload
-                <input hidden accept="image/*" multiple type="file" />
               </Button>
             </Box>
           </Box>

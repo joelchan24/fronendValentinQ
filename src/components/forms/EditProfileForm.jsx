@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { updateProfileWs } from "../../services/user-admin-ws";
 import { singleImageWs } from "../../services/updatePicWs";
 
@@ -19,16 +19,14 @@ export default function EditProfileForm({
   setShowName,
   setShowLastName,
   setShowUsername,
+  setShowAvatar
 }) {
   const [firstName, setFirstName] = useState(props.pebblesUser.firstName);
   const [lastName, setLastName] = useState(props.pebblesUser.lastName);
   const [username, setUsername] = useState(props.pebblesUser.username);
 
   const [avatarUrl, setAvatarUrl] = useState(props.pebblesUser.avatarUrl);
-
-  const editImage = (e) => {
-    console.log(e.target.files);
-  };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,17 +35,34 @@ export default function EditProfileForm({
         firstName,
         lastName,
         username,
+        avatarUrl
       });
       setShowLastName(lastName);
       setShowName(firstName);
       setShowUsername(username);
+      setShowAvatar(avatarUrl)
       setIsEdit((prevState) => !prevState);
     } catch (error) {
       console.log(error.response.data.errorMessage);
       alert(`ERROR : ${error.response.data.errorMessage}`);
     }
   };
+  //?-----------------------------------------------------------------------
+  const elInput = useRef('input')
 
+  const openImage = () => {
+    elInput.current.click()
+  }
+  
+  const editImage = (e) => {
+    const fromData = new FormData()
+    fromData.append('image', e.target.files[0])
+
+    singleImageWs(fromData).then((res) =>{
+      setAvatarUrl(res.data.url.uri)
+    }).catch(error => console.log(error))
+  };
+  //?-----------------------------------------------------------------------
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -62,26 +77,25 @@ export default function EditProfileForm({
         <Typography component="h1" variant="h5">
           Edit my Profile
         </Typography>
+
+
+
         <Avatar
-          src={props.pebblesUser.avatarUrl}
+          src={typeof avatarUrl != 'string' ? URL.createObjectURL(avatarUrl) : avatarUrl }
           sx={{ width: 100, height: 100 }}
         />
 
+        <input hidden ref={elInput}  accept="image/*" multiple type="file" onChange={editImage}/>
+
         <Button
-          variant="contained"
-          component="label"
-          size="small"
-          color="secondary"
+          variant="contained" component="label" size="small" color="secondary" onClick={openImage}
         >
           Upload
-          <input
-            hidden
-            accept="image/*"
-            multiple
-            type="file"
-            onChange={editImage}
-          />
         </Button>
+
+
+
+
 
         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
           <Grid container spacing={2}>
@@ -91,7 +105,6 @@ export default function EditProfileForm({
                 name="firstName"
                 required
                 fullWidth
-                
                 defaultValue={props.pebblesUser.firstName}
                 id="firstName"
                 label="First Name"

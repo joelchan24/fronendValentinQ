@@ -7,20 +7,22 @@ import { logoutWs } from "./services/auth-ws";
 
 function App() {
   const [pebblesUser, setPebblesUser] = useState(null);
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const user = localStorage.getItem("connected")
-    if(user){
-      setPebblesUser(JSON.parse(user))
+    const user = localStorage.getItem("connected");
+    if (user) {
+      setPebblesUser(JSON.parse(user));
+      setIsLoading(false);
     } else {
-      setPebblesUser(null)
+      setPebblesUser(null);
+      setIsLoading(false);
     }
-  },[])
-
-  const navigate = useNavigate();
+  }, []);
 
   const authentication = (user) => {
-    localStorage.setItem('connected',JSON.stringify(user))
+    localStorage.setItem("connected", JSON.stringify(user));
     setPebblesUser(user);
   };
 
@@ -31,13 +33,15 @@ function App() {
       alert("LOGOUT SUCCESS");
       navigate("/");
       setPebblesUser(null);
-      localStorage.removeItem('connected')
+      localStorage.removeItem("connected");
     } catch (error) {
       console.log(error.response.data.errorMessage);
       alert(`ERROR : ${error.response.data.errorMessage}`);
     }
   };
-
+  if (isLoading) {
+    return <div> Is loading... </div>;
+  }
   return (
     <div className="App">
       <Navbar pebblesUser={pebblesUser} handleLogout={handleLogout} />

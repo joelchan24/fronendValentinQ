@@ -15,12 +15,6 @@ const ProfilePage = (props) => {
   const [showVisionOne, setShowVisionOne] = useState(
     props.pebblesUser.visionOne
   );
-  const [showVisionTwo, setShowVisionTwo] = useState(
-    props.pebblesUser.visionTwo
-  );
-  const [showVisionThree, setShowVisionThree] = useState(
-    props.pebblesUser.visionThree
-  );
   const [showGeneralVision, setShowGeneralVision] = useState(
     props.pebblesUser.generalVision
   );
@@ -83,7 +77,7 @@ const ProfilePage = (props) => {
               setShowName={setShowName}
               setShowLastName={setShowLastName}
               setShowUsername={setShowUsername}
-              setShowAvata={setShowAvatar}
+              setShowAvatar={setShowAvatar}
             />
           )}
         </Paper>
@@ -106,8 +100,6 @@ const ProfilePage = (props) => {
               <Typography variant="h4">My Vision Board</Typography>
               <Box>
                 <img src={showVisionOne} alt="pic one" width={125} />
-                <img src={showVisionTwo} alt="pic two" width={125} />
-                <img src={showVisionThree} alt="pic three" width={125} />
               </Box>
               <Typography variant="subtitle1">{showGeneralVision}</Typography>
             </Grid>
@@ -137,8 +129,6 @@ const ProfilePage = (props) => {
                 props={props}
                 setVisionEdit={setVisionEdit}
                 setShowVisionOne={setShowVisionOne}
-                setShowVisionTwo={setShowVisionTwo}
-                setShowVisionThree={setShowVisionThree}
                 setShowGeneralVision={setShowGeneralVision}
               />
             </Paper>

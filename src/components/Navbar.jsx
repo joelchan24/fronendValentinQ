@@ -53,6 +53,10 @@ export default function Navbar({ pebblesUser, handleLogout }) {
     setOpen(false);
   };
 
+  const navigateHome = () => {
+    navigate('/login')
+  }
+
   function handleListKeyDown(event) {
     if (event.key === "Tab") {
       event.preventDefault();
@@ -98,7 +102,7 @@ export default function Navbar({ pebblesUser, handleLogout }) {
               <Box ml={2}>
                 <Button
                   variant="contained"
-                  href="/login"
+                  onClick={navigateHome}
                   color="secondary"
                   size="small"
                 >
