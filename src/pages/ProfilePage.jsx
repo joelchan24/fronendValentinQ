@@ -99,7 +99,7 @@ const ProfilePage = (props) => {
             >
               <Typography variant="h4">My Vision Board</Typography>
               <Box>
-                <img src={showVisionOne} alt="pic one" width={125} />
+                <img src={showVisionOne} alt="pic one" width={300} />
               </Box>
               <Typography variant="subtitle1">{showGeneralVision}</Typography>
             </Grid>

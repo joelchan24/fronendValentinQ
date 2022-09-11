@@ -84,11 +84,11 @@ const Habits = (props) => {
           height: 40,
         }}
       >
-        <Button color="secondary" onClick={() => filterHabits("All")}>
+        <Button size="large" color="secondary" onClick={() => filterHabits("All")} >
           All
         </Button>
         {allCategories.map((category) => (
-          <Button color="secondary" onClick={() => filterHabits(category)}>
+          <Button size="large"  color="secondary" onClick={() => filterHabits(category)} sx={{ml:4}} >
             {category}
           </Button>
         ))}

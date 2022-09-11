@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import {
   AppBar,
   Box,
@@ -13,7 +13,6 @@ import {
   MenuItem,
   MenuList,
   Stack,
-  Link,
 } from "@mui/material";
 
 //
@@ -54,8 +53,8 @@ export default function Navbar({ pebblesUser, handleLogout }) {
   };
 
   const navigateHome = () => {
-    navigate('/login')
-  }
+    navigate("/login");
+  };
 
   function handleListKeyDown(event) {
     if (event.key === "Tab") {
@@ -79,7 +78,7 @@ export default function Navbar({ pebblesUser, handleLogout }) {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1, ml: 10 }}>
-            <Link href="/" color="inherit">
+            <Link to={'/'}>
               <img
                 src="https://res.cloudinary.com/duavnrhnp/image/upload/v1662682533/logo_jfqwxp.png"
                 height={35}
