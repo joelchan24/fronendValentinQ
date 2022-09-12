@@ -82,7 +82,9 @@ const Habits = (props) => {
       <Typography variant="h2">Micro-Habits</Typography>
       <Box
         sx={{
-          height: 40,
+          display:"flex",
+          flexWrap:'wrap',
+          justifyContent:'center',
         }}
       >
         <Button
@@ -113,7 +115,7 @@ const Habits = (props) => {
         {filteringHabits.map((habit) => (
           <Card
             sx={{
-              maxWidth: 345,
+              maxWidth: 300,
               margin: 2,
             }}
           >

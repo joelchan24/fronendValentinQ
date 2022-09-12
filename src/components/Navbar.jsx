@@ -16,7 +16,6 @@ import {
   Switch,
 } from "@mui/material";
 
-//
 export default function Navbar({ pebblesUser, handleLogout, setIsDark }) {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);

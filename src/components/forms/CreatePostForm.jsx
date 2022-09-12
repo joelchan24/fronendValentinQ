@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { addPostWs } from "../../services/communityWs";
 import { allPostsWs } from "../../services/communityWs";
-import PostAddIcon from "@mui/icons-material/PostAdd";
 import {
   Avatar,
   Button,
@@ -53,7 +52,7 @@ export default function CreatePostForm({ setComments }) {
           alignItems: "center",
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: "secondary.main", width: 56, height:56 }}>
+        <Avatar sx={{ m: 1, bgcolor: "secondary.main", width: 80, height:80 }}>
           <InsertCommentTwoToneIcon />
         </Avatar>
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>

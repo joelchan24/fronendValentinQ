@@ -35,40 +35,40 @@ const ProfilePage = (props) => {
           },
         }}
       >
-        <Paper elevation={2}>
+        <Paper elevation={2} >
           {!isEdit && (
-            <Grid
+            <Box
               padding={5}
               sx={{
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
                 alignItems: "center",
+                height:'100%'
               }}
             >
-              <Typography variant="h4">{showUsername}'s profile</Typography>
-              <Avatar src={showAvatar} sx={{ width: 100, height: 100 }} />
-              <Typography variant="subtitle1">
-                Full Name: {showName} {showLastName}
-              </Typography>
-              <Typography variant="subtitle1">
-                Username: {props.pebblesUser.username}
-              </Typography>
-              <Typography variant="subtitle1">
-                Email: {props.pebblesUser.email}
-              </Typography>
-              <Typography variant="subtitle1">
-                Role: {props.pebblesUser.role}
-              </Typography>
-              <Button
-                variant="contained"
-                color="secondary"
-                fullWidth
-                onClick={() => setIsEdit((prevState) => !prevState)}
-              >
-                Edit my Profile
-              </Button>
-            </Grid>
+              <Box>
+                <Typography variant="h4"sx={{fontWeight: 'light'}} >{showUsername}'s profile</Typography>
+              </Box>
+              <Box>
+                <Avatar src={showAvatar} sx={{ width: 100, height: 100 }} />
+              </Box>
+              <Box>
+                <Typography sx={{fontWeight: 'light'}} >
+                  Hey {showName} , Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet vel recusandae blanditiis vel recusandae blanditiis ullam? Impedit eligendi facilis animi corrupti, sint nobis a iure, aut consequuntur harum itaque dolorem sapiente fugiat quaerat!
+                </Typography>
+              </Box>
+
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  fullWidth
+                  onClick={() => setIsEdit((prevState) => !prevState)}
+                >
+                  Edit my Profile
+                </Button>
+              </Box>
+
           )}
           {isEdit && (
             <EditProfileForm
