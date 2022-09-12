@@ -5,10 +5,18 @@ import routes from "./config/routes";
 import { Navbar } from "./components";
 import { logoutWs } from "./services/auth-ws";
 
-function App() {
+import {
+  ThemeProvider,
+  CssBaseline,
+  Switch,
+  Box,
+} from "@mui/material";
+
+function App({lightTheme, darkTheme}) {
   const [pebblesUser, setPebblesUser] = useState(null);
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
+  const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
     const user = localStorage.getItem("connected");
@@ -43,16 +51,29 @@ function App() {
     return <div> Is loading... </div>;
   }
   return (
-    <div className="App">
-      <Navbar pebblesUser={pebblesUser} handleLogout={handleLogout} />
-      <Routes>
-        {routes({ pebblesUser, authentication, handleLogout }).map(
-          ({ path, element }) => (
-            <Route key={path} {...{ path, element }} />
-          )
-        )}
-      </Routes>
-    </div>
+    <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+      <CssBaseline />
+      <Box className="App">
+        <Navbar pebblesUser={pebblesUser} handleLogout={handleLogout} setIsDark={setIsDark} />
+        <Box
+          sx={{
+            marginRight: 3,
+            display: "flex",
+            justifyContent: "flex-start",
+            alignItems: "center",
+          }}
+        >
+        </Box>
+
+        <Routes>
+          {routes({ pebblesUser, authentication, handleLogout }).map(
+            ({ path, element }) => (
+              <Route key={path} {...{ path, element }} />
+            )
+          )}
+        </Routes>
+      </Box>
+    </ThemeProvider>
   );
 }
 

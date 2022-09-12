@@ -55,6 +55,7 @@ const Habits = (props) => {
   const deleteHabit = (id) => {
     const newHabits = habits.filter((habit) => habit._id !== id);
     setHabits(newHabits);
+    setFilteringHabits(newHabits);
   };
 
   const deleteData = async (id) => {
@@ -84,11 +85,20 @@ const Habits = (props) => {
           height: 40,
         }}
       >
-        <Button size="large" color="secondary" onClick={() => filterHabits("All")} >
+        <Button
+          size="large"
+          color="secondary"
+          onClick={() => filterHabits("All")}
+        >
           All
         </Button>
         {allCategories.map((category) => (
-          <Button size="large"  color="secondary" onClick={() => filterHabits(category)} sx={{ml:4}} >
+          <Button
+            size="large"
+            color="secondary"
+            onClick={() => filterHabits(category)}
+            sx={{ ml: 4 }}
+          >
             {category}
           </Button>
         ))}
@@ -97,6 +107,7 @@ const Habits = (props) => {
         sx={{
           display: "flex",
           flexWrap: "wrap",
+          justifyContent:'center',
         }}
       >
         {filteringHabits.map((habit) => (

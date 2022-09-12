@@ -77,7 +77,7 @@ const Community = (props) => {
               >
                 <Button
                   color="secondary"
-                  variant="outlined"
+                  variant="contained"
                   size="small"
                   startIcon={<Delete />}
                   onClick={() => deleteData(comment._id)}
@@ -93,7 +93,8 @@ const Community = (props) => {
                   justifyContent: "flex-end",
                 }}
               >
-                <Typography> By: {comment.author} </Typography>
+                <Typography sx={{ fontWeight: "500" }}>By:</Typography>
+                <Typography ml={1} mr={1} color="orange">{comment.author}</Typography>
               </Box>
             )}
           </Paper>

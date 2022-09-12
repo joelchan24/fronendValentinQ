@@ -13,10 +13,11 @@ import {
   MenuItem,
   MenuList,
   Stack,
+  Switch,
 } from "@mui/material";
 
 //
-export default function Navbar({ pebblesUser, handleLogout }) {
+export default function Navbar({ pebblesUser, handleLogout, setIsDark }) {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const anchorRef = useRef(null);
@@ -29,7 +30,6 @@ export default function Navbar({ pebblesUser, handleLogout }) {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
-
     switch (event.target.textContent) {
       case "Home":
         navigate("/");
@@ -52,8 +52,11 @@ export default function Navbar({ pebblesUser, handleLogout }) {
     setOpen(false);
   };
 
-  const navigateHome = () => {
+  const navigateLogin = () => {
     navigate("/login");
+  };
+  const navigateSignUp = () => {
+    navigate("/signup");
   };
 
   function handleListKeyDown(event) {
@@ -76,99 +79,114 @@ export default function Navbar({ pebblesUser, handleLogout }) {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1, ml: 10 }}>
-            <Link to={'/'}>
+        <Toolbar sx={{
+          display:'flex',
+          justifyContent:'space-between'
+        }}>
+          <Box>
+            <Link to={"/"}>
               <img
                 src="https://res.cloudinary.com/duavnrhnp/image/upload/v1662682533/logo_jfqwxp.png"
                 height={35}
                 alt="logo"
               />
             </Link>
-          </Typography>
-          {!pebblesUser && (
-            <>
-              <Box mr={2}>
-                <Button
-                  variant="contained"
-                  href="/signup"
-                  color="secondary"
-                  size="small"
-                >
-                  Signup
-                </Button>
-              </Box>
-              <Box ml={2}>
-                <Button
-                  variant="contained"
-                  onClick={navigateHome}
-                  color="secondary"
-                  size="small"
-                >
-                  Login
-                </Button>
-              </Box>
-            </>
-          )}
-
-          <Stack direction="row" spacing={2}>
-            {pebblesUser && (
-              <div>
-                <Button
-                  ref={anchorRef}
-                  id="composition-button"
-                  aria-controls={open ? "composition-menu" : undefined}
-                  aria-expanded={open ? "true" : undefined}
-                  aria-haspopup="true"
-                  variant="contained"
-                  color="secondary"
-                  size="small"
-                  onClick={handleToggle}
-                >
-                  Dashboard
-                </Button>
-                <Popper
-                  open={open}
-                  anchorEl={anchorRef.current}
-                  role={undefined}
-                  placement="bottom-start"
-                  transition
-                  disablePortal
-                >
-                  {({ TransitionProps, placement }) => (
-                    <Grow
-                      {...TransitionProps}
-                      style={{
-                        transformOrigin:
-                          placement === "bottom-start"
-                            ? "left top"
-                            : "left bottom",
-                      }}
-                    >
-                      <Paper>
-                        <ClickAwayListener onClickAway={handleClose}>
-                          <MenuList
-                            autoFocusItem={open}
-                            id="composition-menu"
-                            aria-labelledby="composition-button"
-                            onKeyDown={handleListKeyDown}
-                          >
-                            <MenuItem onClick={handleClose}>Home</MenuItem>
-                            <MenuItem onClick={handleClose}>Profile</MenuItem>
-                            <MenuItem onClick={handleClose}>
-                              Micro-Habits
-                            </MenuItem>
-                            <MenuItem onClick={handleClose}>Community</MenuItem>
-                            <MenuItem onClick={handleClose}>Logout</MenuItem>
-                          </MenuList>
-                        </ClickAwayListener>
-                      </Paper>
-                    </Grow>
-                  )}
-                </Popper>
-              </div>
+          </Box>
+          <Box sx={{
+            display:'flex',
+            alignItems:'center'
+          }}>
+            {!pebblesUser && (
+              <>
+                <Box mr={1}>
+                  <Button
+                    variant="contained"
+                    onClick={navigateSignUp}
+                    color="secondary"
+                    size="small"
+                  >
+                    Signup
+                  </Button>
+                </Box>
+                <Box ml={1}>
+                  <Button
+                    variant="contained"
+                    onClick={navigateLogin}
+                    color="secondary"
+                    size="small"
+                  >
+                    Login
+                  </Button>
+                </Box>
+              </>
             )}
-          </Stack>
+            <Stack direction="row" spacing={2}>
+              {pebblesUser && (
+                <div>
+                  <Button
+                    ref={anchorRef}
+                    id="composition-button"
+                    aria-controls={open ? "composition-menu" : undefined}
+                    aria-expanded={open ? "true" : undefined}
+                    aria-haspopup="true"
+                    variant="contained"
+                    color="secondary"
+                    size="small"
+                    onClick={handleToggle}
+                  >
+                    Dashboard
+                  </Button>
+                  <Popper
+                    open={open}
+                    anchorEl={anchorRef.current}
+                    role={undefined}
+                    placement="bottom-start"
+                    transition
+                    disablePortal
+                  >
+                    {({ TransitionProps, placement }) => (
+                      <Grow
+                        {...TransitionProps}
+                        style={{
+                          transformOrigin:
+                            placement === "bottom-start"
+                              ? "left top"
+                              : "left bottom",
+                        }}
+                      >
+                        <Paper>
+                          <ClickAwayListener onClickAway={handleClose}>
+                            <MenuList
+                              autoFocusItem={open}
+                              id="composition-menu"
+                              aria-labelledby="composition-button"
+                              onKeyDown={handleListKeyDown}
+                            >
+                              <MenuItem onClick={handleClose}>Home</MenuItem>
+                              <MenuItem onClick={handleClose}>Profile</MenuItem>
+                              <MenuItem onClick={handleClose}>
+                                Micro-Habits
+                              </MenuItem>
+                              <MenuItem onClick={handleClose}>
+                                Community
+                              </MenuItem>
+                              <MenuItem onClick={handleClose}>Logout</MenuItem>
+                            </MenuList>
+                          </ClickAwayListener>
+                        </Paper>
+                      </Grow>
+                    )}
+                  </Popper>
+                </div>
+              )}
+            </Stack>
+            <Box ml={1}>
+              <Switch
+                color="secondary"
+                onChange={() => setIsDark((prevState) => !prevState)}
+              />
+            </Box>
+          </Box>
         </Toolbar>
       </AppBar>
     </Box>
