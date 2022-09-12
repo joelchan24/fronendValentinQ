@@ -54,7 +54,7 @@ function App({lightTheme, darkTheme}) {
     <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
       <CssBaseline />
       <Box className="App">
-        <Navbar pebblesUser={pebblesUser} handleLogout={handleLogout} setIsDark={setIsDark} />
+        <Navbar pebblesUser={pebblesUser} handleLogout={handleLogout} setIsDark={setIsDark} isDark={isDark} />
         <Box
           sx={{
             marginRight: 3,

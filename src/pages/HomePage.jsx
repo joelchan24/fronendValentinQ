@@ -9,16 +9,78 @@ import {
   Box,
 } from "@mui/material";
 
+import { useNavigate } from "react-router-dom";
+
 const HomePage = (props) => {
+  const navigate = useNavigate();
+  const navigateSignup = () => {
+    navigate('/signup')
+  }
+
   return (
-    <Container sx={{padding: 3}} >
-      <Box mt={3} >
-        <Typography variant="h4">Hi there! Welcome to PEBBLES.</Typography>
+    <Container
+      sx={{
+        padding: 3,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+        }}
+        maxWidth={850}
+      >
+        <Box
+          m={1}
+          sx={{
+            width: "50%",
+          }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-end",
+            }}
+          >
+            <Typography variant="h2" fontWeight="light" color="secondary">
+              WELCOME
+            </Typography>
+            <Typography variant="h2" fontWeight="light" color="secondary">
+              TO
+            </Typography>
+            <Typography variant="h2" fontWeight="light" color="secondary">
+              PEBBLES
+            </Typography>
+          </Box>
+          <Box mt={2}>
+            <Button
+              color="secondary"
+              variant="contained"
+              fullWidth
+              onClick={navigateSignup}
+              sx={{
+                borderRadius: 10,
+              }}
+            >
+              signup
+            </Button>
+          </Box>
+        </Box>
+        <Box ml={3}>
+          <img
+            src="https://res.cloudinary.com/duavnrhnp/image/upload/v1663016857/mug_n0ziue.png"
+            alt="mug"
+            width={200}
+          />
+        </Box>
       </Box>
-      <Box>
-        <Typography variant="subtitle1" sx={{padding: 3}} >
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta sed, omnis inventore, labore velit consequatur blanditiis odit delectus explicabo tempore exercitationem similique ducimus officiis excepturi repudiandae ea quos distinctio quaerat.
-        </Typography>
+      <Box  >
+
       </Box>
     </Container>
   );

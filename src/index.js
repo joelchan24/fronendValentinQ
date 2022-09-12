@@ -4,6 +4,8 @@ import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
 import {createTheme} from '@mui/material'
 
+// #042B60
+
 const lightTheme = createTheme({
   palette:{
     mode:"light",
@@ -13,7 +15,7 @@ const lightTheme = createTheme({
       dark: "#E7E6D1"
     },
     secondary:{
-      main: "#61DBB8",
+      main: "#042B60",
       light: "#1A4081",
       dark: "#3DA285"
     },

@@ -16,7 +16,7 @@ import {
   Switch,
 } from "@mui/material";
 
-export default function Navbar({ pebblesUser, handleLogout, setIsDark }) {
+export default function Navbar({ pebblesUser, handleLogout, setIsDark , isDark }) {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const anchorRef = useRef(null);
@@ -85,7 +85,7 @@ export default function Navbar({ pebblesUser, handleLogout, setIsDark }) {
           <Box>
             <Link to={"/"}>
               <img
-                src="https://res.cloudinary.com/duavnrhnp/image/upload/v1662682533/logo_jfqwxp.png"
+                src={!isDark ? "https://res.cloudinary.com/duavnrhnp/image/upload/v1663003383/logoAzul_g93lki.png" : "https://res.cloudinary.com/duavnrhnp/image/upload/v1663003383/logoBlanco_iuahoa.png"}
                 height={35}
                 alt="logo"
               />
@@ -97,16 +97,6 @@ export default function Navbar({ pebblesUser, handleLogout, setIsDark }) {
           }}>
             {!pebblesUser && (
               <>
-                <Box mr={1}>
-                  <Button
-                    variant="contained"
-                    onClick={navigateSignUp}
-                    color="secondary"
-                    size="small"
-                  >
-                    Signup
-                  </Button>
-                </Box>
                 <Box ml={1}>
                   <Button
                     variant="contained"

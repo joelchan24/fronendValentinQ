@@ -82,9 +82,9 @@ const Habits = (props) => {
       <Typography variant="h2">Micro-Habits</Typography>
       <Box
         sx={{
-          display:"flex",
-          flexWrap:'wrap',
-          justifyContent:'center',
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
         }}
       >
         <Button
@@ -109,7 +109,7 @@ const Habits = (props) => {
         sx={{
           display: "flex",
           flexWrap: "wrap",
-          justifyContent:'center',
+          justifyContent: "center",
         }}
       >
         {filteringHabits.map((habit) => (
@@ -125,21 +125,33 @@ const Habits = (props) => {
               image={choosingImg(habit.timeSuggestion)}
               alt="green iguana"
             />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
+            <CardContent sx={{pb:'0'}}  >
+              <Typography gutterBottom variant="h7" component="div">
                 {habit.title}
               </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {habit.description}
-              </Typography>
-              <Typography
-                variant="caption"
-                display="block"
-                gutterBottom
-                marginTop={1}
+              <Box
+                sx={{
+                  height: 100,
+                  overflowY: "Auto",
+                }}
               >
-                WHY? {habit.reason}
-              </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {habit.description}
+                </Typography>
+              </Box>
+              <Box sx={{
+                height:50,
+                overFlowY:"Auto"
+              }} >
+                <Typography
+                  variant="caption"
+                  display="block"
+                  gutterBottom
+                  marginTop={1}
+                >
+                  WHY? {habit.reason}
+                </Typography>
+              </Box>
             </CardContent>
             <CardActions
               sx={{
