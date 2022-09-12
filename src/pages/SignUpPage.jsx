@@ -1,11 +1,11 @@
 import { SignUpForm } from "../components"
+import {Box, Typography} from '@mui/material'
 
 const SignUpPage = (props) => {
   return (
-    <div>
-      <h1> Signup. </h1>
+    <Box>
       <SignUpForm {...props} />
-    </div>
+    </Box>
   )
 }
 

@@ -1,12 +1,10 @@
 import { useState } from "react";
 import { signupWs } from "../../services/auth-ws";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from "react-router-dom";
 import {
-  Avatar,
   Button,
   CssBaseline,
   TextField,
-  Link,
   Grid,
   Box,
   Typography,
@@ -22,10 +20,7 @@ export default function SignUpForm(props) {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-
-  const navigate = useNavigate()
-
-
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -43,7 +38,7 @@ export default function SignUpForm(props) {
       console.log("que es data en signup ---->", data);
       props.authentication(data.user);
       alert("TESTING SUCCESS");
-      navigate("/profile")
+      navigate("/profile");
     } catch (error) {
       console.log(error.response.data.errorMessage);
       alert(`ERROR : ${error.response.data.errorMessage}`);
@@ -55,17 +50,15 @@ export default function SignUpForm(props) {
       <CssBaseline />
       <Box
         sx={{
-          marginTop: 8,
+          marginTop: 3,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-          <LockPersonTwoToneIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5" color={"#003E76"}>
-          Sign up
+        <LockPersonTwoToneIcon sx={{ width: 75, height: 75 }} color="secondary" />
+        <Typography component="h1" variant="h4" color='secondary' sx={{fontWeight:'light'}} >
+          sign up and get access to all the micro habits.
         </Typography>
         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
           <Grid container spacing={2}>
@@ -154,10 +147,13 @@ export default function SignUpForm(props) {
           >
             Sign Up
           </Button>
-          <Grid container justifyContent="flex-end">
+          <Grid container sx={{
+            display:'flex',
+            justifyContent:'center'
+          }}>
             <Grid item>
-              <Link href="/login" variant="body2" color={"secondary"}>
-                Already have an account? Sign in
+              <Link to="/login">
+                Already have an account? Login
               </Link>
             </Grid>
           </Grid>

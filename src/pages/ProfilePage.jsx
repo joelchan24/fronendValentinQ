@@ -38,13 +38,16 @@ const ProfilePage = (props) => {
         <Paper elevation={2} >
           {!isEdit && (
             <Box
-              padding={5}
               sx={{
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
                 alignItems: "center",
-                height:'100%'
+                height:'100%',
+                pt:3,
+                pl:6.2,
+                pr:6.2,
+                pb:3
               }}
             >
               <Box>
@@ -58,7 +61,6 @@ const ProfilePage = (props) => {
                   Hey {showName} , Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet vel recusandae blanditiis vel recusandae blanditiis ullam? Impedit eligendi facilis animi corrupti, sint nobis a iure, aut consequuntur harum itaque dolorem sapiente fugiat quaerat!
                 </Typography>
               </Box>
-
                 <Button
                   variant="contained"
                   color="secondary"

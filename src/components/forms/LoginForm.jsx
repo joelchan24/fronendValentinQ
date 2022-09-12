@@ -1,13 +1,11 @@
 import { useState } from "react";
 import { loginWs } from "../../services/auth-ws";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 import {
-  Avatar,
   Button,
   TextField,
   CssBaseline,
-  Link,
   Grid,
   Box,
   Typography,
@@ -49,17 +47,16 @@ export default function LoginForm(props) {
       <CssBaseline />
       <Box
         sx={{
-          marginTop: 8,
+          marginTop: 3,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-          <LockPersonTwoToneIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5" color={"#003E76"}>
-          Login
+          <LockPersonTwoToneIcon sx={{ width: 75, height: 75 }} color="secondary" />
+
+        <Typography component="h1" variant="h4" color='secondary' sx={{fontWeight:'light'}}>
+          login and continue with your habits
         </Typography>
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <TextField
@@ -95,15 +92,14 @@ export default function LoginForm(props) {
           >
             Login
           </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2" color={"secondary"}>
-                Forgot password?
-              </Link>
-            </Grid>
+          <Grid container 
+            sx={{
+              display:'flex',
+              justifyContent:'center'
+            }} >
             <Grid item>
-              <Link href="/signup" variant="body2" color={"secondary"}>
-                {"Don't have an account? Sign Up"}
+              <Link to="/signup">
+                Don't have an account? Sign Up
               </Link>
             </Grid>
           </Grid>

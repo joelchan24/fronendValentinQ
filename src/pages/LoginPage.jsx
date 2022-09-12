@@ -1,12 +1,12 @@
 import {LoginForm} from '../components'
+import {Box, Typography} from '@mui/material'
 
 
 const AuthPage = (props) => {
   return (
-    <div>
-      <h1> Login. </h1>
+    <Box>
       <LoginForm {...props} />
-    </div>
+    </Box>
   )
 }
 
