@@ -14,8 +14,8 @@ import { useNavigate } from "react-router-dom";
 const HomePage = (props) => {
   const navigate = useNavigate();
   const navigateSignup = () => {
-    navigate('/signup')
-  }
+    navigate("/signup");
+  };
 
   return (
     <Container
@@ -47,13 +47,25 @@ const HomePage = (props) => {
               alignItems: "flex-end",
             }}
           >
-            <Typography sx={{typography:{sm: 'h2', xs: 'h5'}}} fontWeight="light" color="secondary">
+            <Typography
+              sx={{ typography: { sm: "h2", xs: "h5" } }}
+              fontWeight="light"
+              color="secondary"
+            >
               WELCOME
             </Typography>
-            <Typography sx={{typography:{sm: 'h2', xs: 'h5'}}} fontWeight="light" color="secondary">
+            <Typography
+              sx={{ typography: { sm: "h2", xs: "h5" } }}
+              fontWeight="light"
+              color="secondary"
+            >
               TO
             </Typography>
-            <Typography sx={{typography:{sm: 'h2', xs: 'h5'}}} fontWeight="light" color="secondary">
+            <Typography
+              sx={{ typography: { sm: "h2", xs: "h5" } }}
+              fontWeight="light"
+              color="secondary"
+            >
               PEBBLES
             </Typography>
           </Box>
@@ -79,6 +91,88 @@ const HomePage = (props) => {
           />
         </Box>
       </Box>
+      <Box m={2}>
+        <Box maxWidth={850}>
+          <Typography sx={{ typography: { sm: "h5", xs: "subtitle2" } }}>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi a
+            nisi deserunt unde consectetur corporis, possimus nemo iste impedit
+            voluptas minima temporibus?
+          </Typography>
+        </Box>
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+        }}
+        maxWidth={850}
+      >
+        <Card sx={{ maxWidth: 250, margin: 2 }}>
+          <CardMedia
+            component="img"
+            height="140"
+            image="https://res.cloudinary.com/duavnrhnp/image/upload/v1663086479/microhabits_cunaii.jpg"
+            alt="book"
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              micro-habits
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Camembert de normandie jarlsberg cheesy feet.
+            </Typography>
+          </CardContent>
+          <CardActions>
+            <Button color="secondary" size="small">
+              Share
+            </Button>
+          </CardActions>
+        </Card>
+        <Card sx={{ maxWidth: 250, margin: 2 }}>
+          <CardMedia
+            component="img"
+            height="140"
+            image="https://res.cloudinary.com/duavnrhnp/image/upload/v1663086479/visionboard_btoz8p.jpg"
+            alt="cloud"
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              vision board
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Cheese slices cauliflower cheese dolcelatte bavarian
+            </Typography>
+          </CardContent>
+          <CardActions>
+            <Button color="secondary" size="small">
+              Share
+            </Button>
+          </CardActions>
+        </Card>
+        <Card sx={{ maxWidth: 250, margin: 2 }}>
+          <CardMedia
+            component="img"
+            height="140"
+            image="https://res.cloudinary.com/duavnrhnp/image/upload/v1663086479/community_zk3oor.jpg"
+            alt="chat"
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              community
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Cheeseburger fondue the big cheese.
+            </Typography>
+          </CardContent>
+          <CardActions>
+            <Button color="secondary" size="small">
+              Share
+            </Button>
+          </CardActions>
+        </Card>
+      </Box>
+      
     </Container>
   );
 };

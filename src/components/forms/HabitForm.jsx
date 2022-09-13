@@ -87,7 +87,7 @@ export default function HabitForm() {
           required
           fullWidth
           multiline
-          maxRows={4}
+          rows={3}
           name="description"
           label="Description"
           value={description}
@@ -103,7 +103,6 @@ export default function HabitForm() {
           required
           fullWidth
           multiline
-          rows={3}
           name="reason"
           label="Reason"
           color="secondary"
