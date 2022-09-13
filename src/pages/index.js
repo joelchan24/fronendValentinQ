@@ -1,0 +1,6 @@
+export {default as LoginPage} from './LoginPage'
+export {default as SignUpPage} from './SignUpPage'
+export {default as HomePage} from './HomePage'
+export {default as ProfilePage} from './ProfilePage'
+export {default as Habit} from './Habits'
+export {default as Community} from './Community'
