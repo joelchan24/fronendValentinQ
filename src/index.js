@@ -15,9 +15,9 @@ const lightTheme = createTheme({
       dark: "#E7E6D1"
     },
     secondary:{
-      main: "#042B60",
-      light: "#1A4081",
-      dark: "#3DA285"
+      main: "#083D84",
+      light: "#0B4DA5",
+      dark: "#05234C"
     },
     text:{
       primary:"rgba(2,6,13,0.87)",
@@ -39,9 +39,9 @@ const darkTheme = createTheme({
       dark:"#7CF0CD"
     },
     secondary:{
-      main:"#5A56DB",
-      light:"#6A66DE",
-      dark:"#423EC5"
+      main:"#6A32FF",
+      light:"#8051FF",
+      dark:"#5128BF"
     },
     text:{
       primary:"rgba(253,253,249, 0.8)",

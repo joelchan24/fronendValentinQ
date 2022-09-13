@@ -47,13 +47,13 @@ const HomePage = (props) => {
               alignItems: "flex-end",
             }}
           >
-            <Typography variant="h2" fontWeight="light" color="secondary">
+            <Typography sx={{typography:{sm: 'h2', xs: 'h5'}}} fontWeight="light" color="secondary">
               WELCOME
             </Typography>
-            <Typography variant="h2" fontWeight="light" color="secondary">
+            <Typography sx={{typography:{sm: 'h2', xs: 'h5'}}} fontWeight="light" color="secondary">
               TO
             </Typography>
-            <Typography variant="h2" fontWeight="light" color="secondary">
+            <Typography sx={{typography:{sm: 'h2', xs: 'h5'}}} fontWeight="light" color="secondary">
               PEBBLES
             </Typography>
           </Box>
@@ -78,9 +78,6 @@ const HomePage = (props) => {
             width={200}
           />
         </Box>
-      </Box>
-      <Box  >
-
       </Box>
     </Container>
   );
