@@ -49,8 +49,8 @@ export default function CreatePostForm({ setComments }) {
           alignItems: "center",
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: "secondary.main", width: 80, height:80 }}>
-          <InsertCommentTwoToneIcon />
+        <Avatar sx={{ m: 1, bgcolor: "secondary.main", width: 75, height:75 }}>
+          <InsertCommentTwoToneIcon sx={{ m: 1, bgcolor: "secondary.main", width: 50, height:50 }}  />
         </Avatar>
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <TextField

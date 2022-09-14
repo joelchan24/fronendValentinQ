@@ -7,6 +7,7 @@ import {
   Container,
   Typography,
   Box,
+  Paper
 } from "@mui/material";
 
 import { useNavigate } from "react-router-dom";
@@ -87,7 +88,7 @@ const HomePage = (props) => {
           <img
             src="https://res.cloudinary.com/duavnrhnp/image/upload/v1663016857/mug_n0ziue.png"
             alt="mug"
-            width={200}
+            width={210}
           />
         </Box>
       </Box>
@@ -124,7 +125,7 @@ const HomePage = (props) => {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button color="secondary" size="small">
+            <Button variant="outlined" color="secondary" size="small">
               Share
             </Button>
           </CardActions>
@@ -145,7 +146,7 @@ const HomePage = (props) => {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button color="secondary" size="small">
+            <Button variant="outlined" color="secondary" size="small">
               Share
             </Button>
           </CardActions>
@@ -166,7 +167,7 @@ const HomePage = (props) => {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button color="secondary" size="small">
+            <Button variant="outlined" color="secondary" size="small">
               Share
             </Button>
           </CardActions>

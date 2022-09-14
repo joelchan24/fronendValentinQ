@@ -35,9 +35,16 @@ const Community = (props) => {
   };
 
   return (
-    <Box>
-      <Typography variant="h2" align="center">
+    <Box sx={{
+      display:'flex',
+      justifyContent:'center'
+    }}>
+      <Box sx={{maxWidth:700}} mt={2} >
+      <Typography sx={{ typography: { sm: "h2", xs: "h4" } }} >
         Community
+      </Typography>
+      <Typography sx={{ typography: { sm: "h4", xs: "h6" } }}>
+        share with others a habit that works for you or you can just leave a comment
       </Typography>
       <CreatePostForm setComments={setComments} />
       <Box sx={{
@@ -66,7 +73,7 @@ const Community = (props) => {
                 alignItems: "center",
               }}
             >
-              <Typography variant="body1">{comment.comment}</Typography>
+              <Typography variant="subtitle1">{comment.comment}</Typography>
 
               {comment.author === props.pebblesUser.username ? (
                 <Box
@@ -104,6 +111,7 @@ const Community = (props) => {
           ))}
         </Box>
       </Box>
+    </Box>
     </Box>
   );
 };

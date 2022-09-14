@@ -3,6 +3,7 @@ import "./App.css";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import routes from "./config/routes";
 import { Navbar } from "./components";
+import { Footer } from './components'
 import { logoutWs } from "./services/auth-ws";
 
 import {
@@ -10,6 +11,7 @@ import {
   CssBaseline,
   Box,
 } from "@mui/material";
+import { Container } from "@mui/system";
 
 function App({lightTheme, darkTheme}) {
   const [pebblesUser, setPebblesUser] = useState(null);
@@ -64,23 +66,16 @@ function App({lightTheme, darkTheme}) {
       <CssBaseline />
       <Box className="App">
         <Navbar pebblesUser={pebblesUser} handleLogout={handleLogout} setIsDark={setIsDark} isDark={isDark} />
-        <Box
-          sx={{
-            marginRight: 3,
-            display: "flex",
-            justifyContent: "flex-start",
-            alignItems: "center",
-          }}
-        >
-        </Box>
-
-        <Routes>
-          {routes({ pebblesUser, authentication, handleLogout, style}).map(
-            ({ path, element }) => (
-              <Route key={path} {...{ path, element }} />
-            )
-          )}
-        </Routes>
+        <Container className="content-container">
+          <Routes>
+            {routes({ pebblesUser, authentication, handleLogout, style}).map(
+              ({ path, element }) => (
+                <Route key={path} {...{ path, element }} />
+              )
+            )}
+          </Routes>
+        </Container>
+        <Footer />
       </Box>
     </ThemeProvider>
   );

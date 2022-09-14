@@ -13,6 +13,7 @@ import {
   Select,
   MenuItem,
   Modal,
+  Avatar
 } from "@mui/material";
 import AddBoxTwoToneIcon from "@mui/icons-material/AddBoxTwoTone";
 
@@ -61,7 +62,9 @@ export default function HabitForm({props}) {
           alignItems: "center",
         }}
       >
-        <AddBoxTwoToneIcon sx={{ width: 75, height: 75 }} color="secondary" />
+        <Avatar sx={{ m: 1, bgcolor: "secondary.main", width: 75, height:75 }} mt={2}>
+          <AddBoxTwoToneIcon sx={{ width: 50, height: 50 }}/>
+        </Avatar>
         <Typography
           component="h1"
           variant="h5"
@@ -95,7 +98,7 @@ export default function HabitForm({props}) {
           required
           fullWidth
           multiline
-          rows={3}
+          rows={2}
           name="description"
           label="Description"
           value={description}
@@ -121,7 +124,7 @@ export default function HabitForm({props}) {
           placeholder="please describe a reason to do it"
           onChange={(e) => setReason(e.target.value)}
         />
-        <FormControl fullWidth>
+        <FormControl fullWidth >
           <InputLabel id="timeSuggestion" color="secondary">
             Time Suggestion
           </InputLabel>

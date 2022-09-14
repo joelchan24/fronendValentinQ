@@ -1,4 +1,5 @@
 export {default as Navbar} from './Navbar'
+export {default as Footer} from './Footer'
 export {default as LoginForm} from './forms/LoginForm.jsx'
 export {default as SignUpForm} from './forms/SignUpForm.jsx'
 export {default as HabitForm} from './forms/HabitForm.jsx'

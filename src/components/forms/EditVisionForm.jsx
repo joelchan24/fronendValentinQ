@@ -15,8 +15,6 @@ export default function EditVisionForm({
   props,
   setVisionEdit,
   setShowVisionOne,
-  setShowVisionTwo,
-  setShowVisionThree,
   setShowGeneralVision,
 }) {
   const [visionOne, setVisionOne] = useState(props.pebblesUser.visionOne);
