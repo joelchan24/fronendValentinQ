@@ -5,6 +5,7 @@ import {
   ProfilePage,
   Habit,
   Community,
+  NotFound
 } from "../pages";
 
 export default function routes(props) {
@@ -33,5 +34,9 @@ export default function routes(props) {
       path: "/community",
       element: <Community {...props} />,
     },
+    {
+      path:'/*',
+      element: <NotFound />,
+    }
   ];
 }

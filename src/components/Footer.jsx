@@ -1,8 +1,6 @@
 import {
   Typography,
   Box,
-  BottomNavigation,
-  Link,
   IconButton,
 } from "@mui/material";
 
@@ -12,8 +10,9 @@ const Footer = () => {
   return (
     <Box className="footer--pin" sx={{
       borderTop:1,
-      borderColor:'secondary.main'
-    }}>
+      borderColor:'secondary.dark'
+      
+    }} bgcolor="primary.main" >
       <Box>
         <Typography
           variant="subtitle1"

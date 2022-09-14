@@ -53,9 +53,6 @@ export default function Navbar({ pebblesUser, handleLogout, setIsDark , isDark }
   const navigateLogin = () => {
     navigate("/login");
   };
-  const navigateSignUp = () => {
-    navigate("/signup");
-  };
 
   function handleListKeyDown(event) {
     if (event.key === "Tab") {

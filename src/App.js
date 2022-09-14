@@ -10,8 +10,8 @@ import {
   ThemeProvider,
   CssBaseline,
   Box,
+  Container
 } from "@mui/material";
-import { Container } from "@mui/system";
 
 function App({lightTheme, darkTheme}) {
   const [pebblesUser, setPebblesUser] = useState(null);
@@ -66,7 +66,7 @@ function App({lightTheme, darkTheme}) {
       <CssBaseline />
       <Box className="App">
         <Navbar pebblesUser={pebblesUser} handleLogout={handleLogout} setIsDark={setIsDark} isDark={isDark} />
-        <Container className="content-container">
+        <Container sx={{ marginBottom:8 }} >
           <Routes>
             {routes({ pebblesUser, authentication, handleLogout, style}).map(
               ({ path, element }) => (
