@@ -1,23 +1,25 @@
 import { useState } from "react";
 import { HabitForm, EditProfileForm, EditVisionForm } from "../components";
-
 import { Avatar, Button, Typography, Box, Grid, Paper } from "@mui/material";
+import randomFacts from '../services/randomFacts'
+
 
 const ProfilePage = (props) => {
   const [isEdit, setIsEdit] = useState(false);
   const [visionEdit, setVisionEdit] = useState(false);
-
   const [showName, setShowName] = useState(props.pebblesUser.firstName);
   const [showLastName, setShowLastName] = useState(props.pebblesUser.lastName);
   const [showUsername, setShowUsername] = useState(props.pebblesUser.username);
   const [showAvatar, setShowAvatar] = useState(props.pebblesUser.avatarUrl);
-
   const [showVisionOne, setShowVisionOne] = useState(
     props.pebblesUser.visionOne
   );
   const [showGeneralVision, setShowGeneralVision] = useState(
     props.pebblesUser.generalVision
   );
+
+  let randomFact = randomFacts[Math.floor(Math.random() * randomFacts.length)]
+
 
   return (
     <div>
@@ -54,11 +56,14 @@ const ProfilePage = (props) => {
                 <Typography variant="h4"sx={{fontWeight: 'light'}} >{showUsername}'s profile</Typography>
               </Box>
               <Box>
-                <Avatar src={showAvatar} sx={{ width: 100, height: 100 }} />
+                <Avatar src={showAvatar} sx={{ width: 130, height: 130 }} />
               </Box>
               <Box>
-                <Typography sx={{fontWeight: 'light'}} >
-                  Hey {showName} , Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet vel recusandae blanditiis vel recusandae blanditiis ullam? Impedit eligendi facilis animi corrupti, sint nobis a iure, aut consequuntur harum itaque dolorem sapiente fugiat quaerat!
+                <Typography sx={{fontWeight: 'bold'}} >
+                  Hey {showName} {showLastName} did you know ?
+                </Typography>
+                <Typography pt={1} color="secondary" >
+                  {randomFact}
                 </Typography>
               </Box>
                 <Button
@@ -85,7 +90,7 @@ const ProfilePage = (props) => {
         </Paper>
         {props.pebblesUser.role === "Admin" && (
           <Paper elevation={2}>
-            <HabitForm />
+            <HabitForm props={props} />
           </Paper>
         )}
         {!visionEdit && props.pebblesUser.role === "User" ? (

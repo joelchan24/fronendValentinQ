@@ -2,7 +2,6 @@ import { useState } from "react";
 import { addHabitWs } from "../../services/habitWs";
 
 import {
-  Avatar,
   Button,
   TextField,
   CssBaseline,
@@ -13,14 +12,19 @@ import {
   InputLabel,
   Select,
   MenuItem,
+  Modal,
 } from "@mui/material";
 import AddBoxTwoToneIcon from "@mui/icons-material/AddBoxTwoTone";
 
-export default function HabitForm() {
+export default function HabitForm({props}) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [reason, setReason] = useState("");
   const [timeSuggestion, setTimeSuggestion] = useState("");
+  const [error, setError] = useState("");
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,7 +39,8 @@ export default function HabitForm() {
       setReason("");
     } catch (error) {
       console.log(error.response.data.errorMessage);
-      alert(`ERROR : ${error.response.data.errorMessage}`);
+      setError(error.response.data.errorMessage);
+      handleOpen();
     }
   };
 
@@ -45,9 +50,9 @@ export default function HabitForm() {
       maxWidth="xs"
       sx={{
         height: "100%",
-        display:'flex',
-        flexDirection:'column',
-        justifyContent:'space-evenly'
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-evenly",
       }}
     >
       <CssBaseline />
@@ -59,11 +64,16 @@ export default function HabitForm() {
         }}
       >
         <AddBoxTwoToneIcon sx={{ width: 75, height: 75 }} color="secondary" />
-        <Typography component="h1" variant="h5" sx={{fontWeight: 'light', mb:1}}>
+        <Typography
+          component="h1"
+          variant="h5"
+          sx={{ fontWeight: "light", mb: 1 }}
+        >
           create micro habit (admin only)
         </Typography>
-        <Typography sx={{fontWeight: 'light'}}>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum eaque incidunt molestias ipsum nihil aliquid illum eum quis tempora
+        <Typography sx={{ fontWeight: "light" }}>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum
+          eaque incidunt molestias ipsum nihil aliquid illum eum quis tempora
         </Typography>
       </Box>
 
@@ -142,6 +152,23 @@ export default function HabitForm() {
           Create
         </Button>
       </Box>
+      <div>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={props.style}>
+            <Typography color="red" id="modal-modal-title" variant="h6" component="h2">
+              ERROR!
+            </Typography>
+            <Typography color="red" id="modal-modal-description" sx={{ mt: 2 }}>
+              {error}
+            </Typography>
+          </Box>
+        </Modal>
+      </div>
     </Container>
   );
 }
