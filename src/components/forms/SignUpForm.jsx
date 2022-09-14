@@ -39,12 +39,10 @@ const navigate = useNavigate();
 
     try {
       const { data } = await signupWs(response);
-      console.log("que es data en signup ---->", data);
       props.authentication(data.user);
       alert("TESTING SUCCESS");
       navigate("/profile");
     } catch (error) {
-      console.log(error.response.data.errorMessage);
       setError(error.response.data.errorMessage)
       handleOpen();
     }

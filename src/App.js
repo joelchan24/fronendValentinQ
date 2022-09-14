@@ -9,8 +9,6 @@ import {
   ThemeProvider,
   CssBaseline,
   Box,
-  Modal,
-  Typography
 } from "@mui/material";
 
 function App({lightTheme, darkTheme}) {
@@ -18,11 +16,6 @@ function App({lightTheme, darkTheme}) {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [isDark, setIsDark] = useState(false);
-
-  const [error, setError] = useState("");
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
 
   const style = {
     position: "absolute",
@@ -54,15 +47,13 @@ function App({lightTheme, darkTheme}) {
 
   const handleLogout = async () => {
     try {
-      const res = await logoutWs();
-      console.log("res del logout --->", res);
-      alert("LOGOUT SUCCESS");
+      await logoutWs();
       navigate("/");
       setPebblesUser(null);
       localStorage.removeItem("connected");
     } catch (error) {
-      console.log(error.response.data.errorMessage);
-      alert(`ERROR : ${error.response.data.errorMessage}`);
+      alert(error.response.data.errorMessage);
+
     }
   };
   if (isLoading) {

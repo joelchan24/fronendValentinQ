@@ -36,7 +36,6 @@ export default function EditVisionForm({
       setShowGeneralVision(generalVision);
       setVisionEdit((prevState) => !prevState);
     } catch (error) {
-      console.log(error.response.data.errorMessage);
       alert(`ERROR : ${error.response.data.errorMessage}`);
     }
   };
@@ -46,14 +45,13 @@ export default function EditVisionForm({
   const openImage = (e) => { elInput.current.click() };
 
   const updateImage = async (e) => {
-    console.log('el primer e ---->', e.target)
     const formData = new FormData();
     formData.append("image", e.target.files[0]);
     try {
       const res = await singleImageWs(formData);
       setVisionOne(res.data.url.uri);
     } catch (error) {
-      console.log(error);
+      alert(error)
     }
   };
 

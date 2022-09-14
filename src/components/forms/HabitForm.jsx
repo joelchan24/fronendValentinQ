@@ -32,13 +32,11 @@ export default function HabitForm({props}) {
 
     try {
       const data = await addHabitWs(response);
-      console.log("que es data  ---> ", data);
       alert("TESTING SUCCESS");
       setTitle("");
       setDescription("");
       setReason("");
     } catch (error) {
-      console.log(error.response.data.errorMessage);
       setError(error.response.data.errorMessage);
       handleOpen();
     }

@@ -19,7 +19,6 @@ export default function CreatePostForm({ setComments }) {
       const res = await allPostsWs();
       setComments(res.data.posts);
     } catch (error) {
-      console.log(error.response.data.errorMessage);
       alert(`ERROR : ${error.response.data.errorMessage}`);
     }
   };
@@ -31,11 +30,9 @@ export default function CreatePostForm({ setComments }) {
     try {
       const data = await addPostWs(response);
       getAllPosts();
-      console.log("que es data --->", data);
       setComment("");
       alert("TESTING SUCCESS");
     } catch (error) {
-      console.log(error.response.data.errorMessage);
       alert(`ERROR : ${error.response.data.errorMessage}`);
     }
   };

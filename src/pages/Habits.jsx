@@ -63,7 +63,6 @@ const Habits = (props) => {
       await deleteHabitWs(id);
       deleteHabit(id);
     } catch (error) {
-      console.log(error.response.data.errorMessage);
       alert(`ERROR : ${error.response.data.errorMessage}`);
     }
   };

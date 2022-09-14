@@ -16,7 +16,6 @@ const Community = (props) => {
       const res = await allPostsWs();
       setComments(res.data.posts);
     } catch (error) {
-      console.log(error.response.data.errorMessage);
       alert(`ERROR : ${error.response.data.errorMessage}`);
     }
   };
@@ -31,7 +30,6 @@ const Community = (props) => {
       await deletePostWs(id);
       deletePost(id);
     } catch (error) {
-      console.log(error.response.data.errorMessage);
       alert(`ERROR : ${error.response.data.errorMessage}`);
     }
   };
@@ -68,7 +66,6 @@ const Community = (props) => {
                 alignItems: "center",
               }}
             >
-              {console.log(comments)}
               <Typography variant="body1">{comment.comment}</Typography>
 
               {comment.author === props.pebblesUser.username ? (

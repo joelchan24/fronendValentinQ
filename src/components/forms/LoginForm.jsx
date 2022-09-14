@@ -29,7 +29,6 @@ export default function LoginForm(props) {
 
     try {
       const { data } = await loginWs(response);
-      console.log("que es data en login ---->", data.user);
       props.authentication(data.user);
 
       if (data.user.role === "User") {
@@ -38,7 +37,6 @@ export default function LoginForm(props) {
         navigate("/profile");
       }
     } catch (error) {
-      console.log(error.response.data.errorMessage);
       setError(error.response.data.errorMessage);
       handleOpen();
     }

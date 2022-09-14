@@ -4,6 +4,7 @@ import { Avatar, Button, Typography, Box, Grid, Paper } from "@mui/material";
 import randomFacts from '../services/randomFacts'
 
 
+
 const ProfilePage = (props) => {
   const [isEdit, setIsEdit] = useState(false);
   const [visionEdit, setVisionEdit] = useState(false);
@@ -19,7 +20,6 @@ const ProfilePage = (props) => {
   );
 
   let randomFact = randomFacts[Math.floor(Math.random() * randomFacts.length)]
-
 
   return (
     <div>
