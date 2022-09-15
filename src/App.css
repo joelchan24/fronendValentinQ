@@ -21,12 +21,3 @@
   justify-content: center;
   align-items: center;
 }
-#root > div > div.MuiBox-root.css-i9gxme > header > div > div.MuiBox-root.css-70qvj9 > div.css-e53awj-MuiStack-root > div > div{
-  z-index: 100;
-}
-#root > div > div.footer--pin.MuiBox-root.css-1vjfwfs{
-  z-index: 100;
-}
-#root > div > div.footer--pin.MuiBox-root.css-8l7ifp{
-  z-index: 100;
-}

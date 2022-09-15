@@ -128,6 +128,7 @@ export default function Navbar({ pebblesUser, handleLogout, setIsDark , isDark }
                     placement="bottom-start"
                     transition
                     disablePortal
+                    sx={{zIndex:'100'}}
                   >
                     {({ TransitionProps, placement }) => (
                       <Grow
@@ -139,7 +140,7 @@ export default function Navbar({ pebblesUser, handleLogout, setIsDark , isDark }
                               : "left bottom",
                         }}
                       >
-                        <Paper>
+                        <Paper  >
                           <ClickAwayListener onClickAway={handleClose}>
                             <MenuList
                               autoFocusItem={open}
