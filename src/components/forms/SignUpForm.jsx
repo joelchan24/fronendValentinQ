@@ -21,7 +21,7 @@ export default function SignUpForm(props) {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 const navigate = useNavigate();
-  const [error, setError] = useState('')
+  const [message, setMessage] = useState('')
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -40,10 +40,9 @@ const navigate = useNavigate();
     try {
       const { data } = await signupWs(response);
       props.authentication(data.user);
-      alert("TESTING SUCCESS");
       navigate("/profile");
     } catch (error) {
-      setError(error.response.data.errorMessage)
+      setMessage(error.response.data.errorMessage)
       handleOpen();
     }
   };
@@ -171,10 +170,10 @@ const navigate = useNavigate();
         >
           <Box sx={props.style}>
             <Typography id="modal-modal-title" variant="h6" component="h2" color="red">
-              ERROR!
+              Hey! 👇
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }} color="red">
-              {error}
+              {message}
             </Typography>
           </Box>
         </Modal>

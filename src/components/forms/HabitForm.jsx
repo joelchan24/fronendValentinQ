@@ -13,16 +13,17 @@ import {
   Select,
   MenuItem,
   Modal,
-  Avatar
+  Avatar,
 } from "@mui/material";
 import AddBoxTwoToneIcon from "@mui/icons-material/AddBoxTwoTone";
 
-export default function HabitForm({props}) {
+export default function HabitForm({ props }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [reason, setReason] = useState("");
   const [timeSuggestion, setTimeSuggestion] = useState("");
-  const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
+  const [colorMessage, setColorMessage] = useState("");
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -33,12 +34,15 @@ export default function HabitForm({props}) {
 
     try {
       const data = await addHabitWs(response);
-      alert("TESTING SUCCESS");
+      setColorMessage('green')
+      setMessage('micro habit created correctly')
+      handleOpen();
       setTitle("");
       setDescription("");
       setReason("");
     } catch (error) {
-      setError(error.response.data.errorMessage);
+      setColorMessage("red");
+      setMessage(error.response.data.errorMessage);
       handleOpen();
     }
   };
@@ -62,8 +66,11 @@ export default function HabitForm({props}) {
           alignItems: "center",
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: "secondary.main", width: 75, height:75 }} mt={2}>
-          <AddBoxTwoToneIcon sx={{ width: 50, height: 50 }}/>
+        <Avatar
+          sx={{ m: 1, bgcolor: "secondary.main", width: 75, height: 75 }}
+          mt={2}
+        >
+          <AddBoxTwoToneIcon sx={{ width: 50, height: 50 }} />
         </Avatar>
         <Typography
           component="h1"
@@ -124,7 +131,7 @@ export default function HabitForm({props}) {
           placeholder="please describe a reason to do it"
           onChange={(e) => setReason(e.target.value)}
         />
-        <FormControl fullWidth >
+        <FormControl fullWidth>
           <InputLabel id="timeSuggestion" color="secondary">
             Time Suggestion
           </InputLabel>
@@ -161,11 +168,20 @@ export default function HabitForm({props}) {
           aria-describedby="modal-modal-description"
         >
           <Box sx={props.style}>
-            <Typography color="red" id="modal-modal-title" variant="h6" component="h2">
-              ERROR!
+            <Typography
+              color={colorMessage}
+              id="modal-modal-title"
+              variant="h6"
+              component="h2"
+            >
+              Hey! 👇
             </Typography>
-            <Typography color="red" id="modal-modal-description" sx={{ mt: 2 }}>
-              {error}
+            <Typography
+              color={colorMessage}
+              id="modal-modal-description"
+              sx={{ mt: 2 }}
+            >
+              {message}
             </Typography>
           </Box>
         </Modal>

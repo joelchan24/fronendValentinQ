@@ -19,7 +19,7 @@ const Footer = () => {
           color="secondary"
           sx={{ typography: { sm: "subtitle1", xs: "body2" } }}
         >
-          a mern application by vale quiroga.
+          a mern stack application by vale quiroga.
         </Typography>
       </Box>
       <Box

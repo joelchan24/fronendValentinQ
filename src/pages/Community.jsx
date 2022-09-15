@@ -46,7 +46,7 @@ const Community = (props) => {
       <Typography sx={{ typography: { sm: "h4", xs: "h6" } }}>
         share with others a habit that works for you or you can just leave a comment
       </Typography>
-      <CreatePostForm setComments={setComments} />
+      <CreatePostForm setComments={setComments} props={props} />
       <Box sx={{
         display:"flex",
         justifyContent:'center',
@@ -75,7 +75,7 @@ const Community = (props) => {
             >
               <Typography variant="subtitle1">{comment.comment}</Typography>
 
-              {comment.author === props.pebblesUser.username ? (
+              {comment.author === props.pebblesUser.username || props.pebblesUser.role === "Admin" ? (
                 <Box
                   sx={{
                     width: "100%",

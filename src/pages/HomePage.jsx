@@ -1,3 +1,5 @@
+import { CardsHome } from "../components";
+
 import {
   Card,
   CardActions,
@@ -7,7 +9,7 @@ import {
   Container,
   Typography,
   Box,
-  Paper
+  Paper,
 } from "@mui/material";
 
 import { useNavigate } from "react-router-dom";
@@ -45,7 +47,7 @@ const HomePage = (props) => {
             sx={{
               display: "flex",
               flexDirection: "column",
-              alignItems: "flex-end",
+              alignItems: "flex-start",
             }}
           >
             <Typography
@@ -70,19 +72,6 @@ const HomePage = (props) => {
               PEBBLES
             </Typography>
           </Box>
-          <Box mt={2}>
-            <Button
-              color="secondary"
-              variant="contained"
-              fullWidth
-              onClick={navigateSignup}
-              sx={{
-                borderRadius: 10,
-              }}
-            >
-              signup
-            </Button>
-          </Box>
         </Box>
         <Box ml={3}>
           <img
@@ -94,86 +83,28 @@ const HomePage = (props) => {
       </Box>
       <Box m={2}>
         <Box maxWidth={850}>
-          <Typography sx={{ typography: { sm: "h5", xs: "subtitle2" } }}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi a
-            nisi deserunt unde consectetur corporis, possimus nemo iste impedit
-            voluptas minima temporibus?
+          <Typography sx={{ typography: { sm: "h4", xs: "subtitle2" } }}>
+            Pebbles is a self-improvement app that inspires you to pursue new
+            habits and share your progress and ideas with other users.
           </Typography>
         </Box>
+        <Box sx={{display:'flex', justifyContent:'center'}} >
+          <Box mt={2} width={300}>
+            <Button
+              color="secondary"
+              variant="contained"
+              fullWidth
+              onClick={navigateSignup}
+              sx={{
+                borderRadius: 10,
+              }}
+            >
+              sign up
+            </Button>
+          </Box>
+        </Box>
       </Box>
-      <Box
-        sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-        }}
-        maxWidth={850}
-      >
-        <Card sx={{ maxWidth: 250, margin: 2 }}>
-          <CardMedia
-            component="img"
-            height="140"
-            image="https://res.cloudinary.com/duavnrhnp/image/upload/v1663086479/microhabits_cunaii.jpg"
-            alt="book"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              micro-habits
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Camembert de normandie jarlsberg cheesy feet.
-            </Typography>
-          </CardContent>
-          <CardActions>
-            <Button variant="outlined" color="secondary" size="small">
-              Share
-            </Button>
-          </CardActions>
-        </Card>
-        <Card sx={{ maxWidth: 250, margin: 2 }}>
-          <CardMedia
-            component="img"
-            height="140"
-            image="https://res.cloudinary.com/duavnrhnp/image/upload/v1663086479/visionboard_btoz8p.jpg"
-            alt="cloud"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              vision board
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Cheese slices cauliflower cheese dolcelatte bavarian
-            </Typography>
-          </CardContent>
-          <CardActions>
-            <Button variant="outlined" color="secondary" size="small">
-              Share
-            </Button>
-          </CardActions>
-        </Card>
-        <Card sx={{ maxWidth: 250, margin: 2 }}>
-          <CardMedia
-            component="img"
-            height="140"
-            image="https://res.cloudinary.com/duavnrhnp/image/upload/v1663086479/community_zk3oor.jpg"
-            alt="chat"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              community
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Cheeseburger fondue the big cheese.
-            </Typography>
-          </CardContent>
-          <CardActions>
-            <Button variant="outlined" color="secondary" size="small">
-              Share
-            </Button>
-          </CardActions>
-        </Card>
-      </Box>
-      
+      <CardsHome />
     </Container>
   );
 };

@@ -8,18 +8,30 @@ import {
   TextField,
   Box,
   Container,
+  Modal,
+  Typography
 } from "@mui/material";
 import InsertCommentTwoToneIcon from "@mui/icons-material/InsertCommentTwoTone";
 
-export default function CreatePostForm({ setComments }) {
+export default function CreatePostForm({ setComments, props }) {
   const [comment, setComment] = useState("");
+
+  const [message, setMessage] = useState('')
+  const [open, setOpen] = useState(false);
+  const [colorMessage, setColorMessage] = useState('')
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const getAllPosts = async () => {
     try {
       const res = await allPostsWs();
+      
+      handleOpen()
       setComments(res.data.posts);
     } catch (error) {
-      alert(`ERROR : ${error.response.data.errorMessage}`);
+      setColorMessage('red')
+      setMessage(error.response.data.errorMessage)
+      handleOpen()
     }
   };
 
@@ -31,9 +43,12 @@ export default function CreatePostForm({ setComments }) {
       const data = await addPostWs(response);
       getAllPosts();
       setComment("");
-      alert("TESTING SUCCESS");
+      setColorMessage('green')
+      setMessage('Post created 🙂')
     } catch (error) {
-      alert(`ERROR : ${error.response.data.errorMessage}`);
+      setColorMessage('red')
+      setMessage(error.response.data.errorMessage)
+      handleOpen()
     }
   };
 
@@ -78,6 +93,23 @@ export default function CreatePostForm({ setComments }) {
           </Button>
         </Box>
       </Box>
+      <div>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={props.style}>
+            <Typography id="modal-modal-title" variant="h6" component="h2" color={colorMessage}>
+              Hey! 👇
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }} color={colorMessage}>
+              {message}
+            </Typography>
+          </Box>
+        </Modal>
+      </div>
     </Container>
   );
 }
