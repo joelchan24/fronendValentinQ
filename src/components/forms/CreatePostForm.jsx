@@ -8,19 +8,30 @@ import {
   TextField,
   Box,
   Container,
+  Modal,
+  Typography
 } from "@mui/material";
 import InsertCommentTwoToneIcon from "@mui/icons-material/InsertCommentTwoTone";
 
-export default function CreatePostForm({ setComments }) {
+export default function CreatePostForm({ setComments, props }) {
   const [comment, setComment] = useState("");
+
+  const [message, setMessage] = useState('')
+  const [open, setOpen] = useState(false);
+  const [colorMessage, setColorMessage] = useState('')
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const getAllPosts = async () => {
     try {
       const res = await allPostsWs();
+      
+      handleOpen()
       setComments(res.data.posts);
     } catch (error) {
-      console.log(error.response.data.errorMessage);
-      alert(`ERROR : ${error.response.data.errorMessage}`);
+      setColorMessage('red')
+      setMessage(error.response.data.errorMessage)
+      handleOpen()
     }
   };
 
@@ -31,12 +42,13 @@ export default function CreatePostForm({ setComments }) {
     try {
       const data = await addPostWs(response);
       getAllPosts();
-      console.log("que es data --->", data);
       setComment("");
-      alert("TESTING SUCCESS");
+      setColorMessage('green')
+      setMessage('Post created 🙂')
     } catch (error) {
-      console.log(error.response.data.errorMessage);
-      alert(`ERROR : ${error.response.data.errorMessage}`);
+      setColorMessage('red')
+      setMessage(error.response.data.errorMessage)
+      handleOpen()
     }
   };
 
@@ -52,8 +64,8 @@ export default function CreatePostForm({ setComments }) {
           alignItems: "center",
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: "secondary.main", width: 80, height:80 }}>
-          <InsertCommentTwoToneIcon />
+        <Avatar sx={{ m: 1, bgcolor: "secondary.main", width: 75, height:75 }}>
+          <InsertCommentTwoToneIcon sx={{ m: 1, bgcolor: "secondary.main", width: 50, height:50 }}  />
         </Avatar>
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <TextField
@@ -81,6 +93,23 @@ export default function CreatePostForm({ setComments }) {
           </Button>
         </Box>
       </Box>
+      <div>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={props.style}>
+            <Typography id="modal-modal-title" variant="h6" component="h2" color={colorMessage}>
+              Hey! 👇
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }} color={colorMessage}>
+              {message}
+            </Typography>
+          </Box>
+        </Modal>
+      </div>
     </Container>
   );
 }

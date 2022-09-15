@@ -4,7 +4,6 @@ import {
   AppBar,
   Box,
   Toolbar,
-  Typography,
   Button,
   ClickAwayListener,
   Grow,
@@ -54,9 +53,6 @@ export default function Navbar({ pebblesUser, handleLogout, setIsDark , isDark }
   const navigateLogin = () => {
     navigate("/login");
   };
-  const navigateSignUp = () => {
-    navigate("/signup");
-  };
 
   function handleListKeyDown(event) {
     if (event.key === "Tab") {
@@ -76,13 +72,13 @@ export default function Navbar({ pebblesUser, handleLogout, setIsDark , isDark }
   }, [open]);
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1}}>
       <AppBar position="static">
         <Toolbar sx={{
           display:'flex',
           justifyContent:'space-between'
         }}>
-          <Box>
+          <Box >
             <Link to={"/"}>
               <img
                 src={!isDark ? "https://res.cloudinary.com/duavnrhnp/image/upload/v1663003383/logoAzul_g93lki.png" : "https://res.cloudinary.com/duavnrhnp/image/upload/v1663003383/logoBlanco_iuahoa.png"}

@@ -42,7 +42,6 @@ export default function EditProfileForm({
       setShowAvatar(avatarUrl);
       setIsEdit((prevState) => !prevState);
     } catch (error) {
-      console.log(error.response.data.errorMessage);
       alert(`ERROR : ${error.response.data.errorMessage}`);
     }
   };
@@ -60,7 +59,8 @@ export default function EditProfileForm({
       .then((res) => {
         setAvatarUrl(res.data.url.uri);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        alert(error)});
   };
 
   return (

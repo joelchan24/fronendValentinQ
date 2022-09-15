@@ -1,3 +1,5 @@
+import { CardsHome } from "../components";
+
 import {
   Card,
   CardActions,
@@ -7,6 +9,7 @@ import {
   Container,
   Typography,
   Box,
+  Paper,
 } from "@mui/material";
 
 import { useNavigate } from "react-router-dom";
@@ -14,8 +17,8 @@ import { useNavigate } from "react-router-dom";
 const HomePage = (props) => {
   const navigate = useNavigate();
   const navigateSignup = () => {
-    navigate('/signup')
-  }
+    navigate("/signup");
+  };
 
   return (
     <Container
@@ -44,20 +47,49 @@ const HomePage = (props) => {
             sx={{
               display: "flex",
               flexDirection: "column",
-              alignItems: "flex-end",
+              alignItems: "flex-start",
             }}
           >
-            <Typography sx={{typography:{sm: 'h2', xs: 'h5'}}} fontWeight="light" color="secondary">
+            <Typography
+              sx={{ typography: { sm: "h2", xs: "h5" } }}
+              fontWeight="light"
+              color="secondary"
+            >
               WELCOME
             </Typography>
-            <Typography sx={{typography:{sm: 'h2', xs: 'h5'}}} fontWeight="light" color="secondary">
+            <Typography
+              sx={{ typography: { sm: "h2", xs: "h5" } }}
+              fontWeight="light"
+              color="secondary"
+            >
               TO
             </Typography>
-            <Typography sx={{typography:{sm: 'h2', xs: 'h5'}}} fontWeight="light" color="secondary">
+            <Typography
+              sx={{ typography: { sm: "h2", xs: "h5" } }}
+              fontWeight="light"
+              color="secondary"
+            >
               PEBBLES
             </Typography>
           </Box>
-          <Box mt={2}>
+        </Box>
+        <Box ml={3}>
+          <img
+            src="https://res.cloudinary.com/duavnrhnp/image/upload/v1663016857/mug_n0ziue.png"
+            alt="mug"
+            width={210}
+          />
+        </Box>
+      </Box>
+      <Box m={2}>
+        <Box maxWidth={850}>
+          <Typography sx={{ typography: { sm: "h4", xs: "subtitle2" } }}>
+            Pebbles is a self-improvement app that inspires you to pursue new
+            habits and share your progress and ideas with other users.
+          </Typography>
+        </Box>
+        <Box sx={{display:'flex', justifyContent:'center'}} >
+          <Box mt={2} width={300}>
             <Button
               color="secondary"
               variant="contained"
@@ -67,18 +99,12 @@ const HomePage = (props) => {
                 borderRadius: 10,
               }}
             >
-              signup
+              sign up
             </Button>
           </Box>
         </Box>
-        <Box ml={3}>
-          <img
-            src="https://res.cloudinary.com/duavnrhnp/image/upload/v1663016857/mug_n0ziue.png"
-            alt="mug"
-            width={200}
-          />
-        </Box>
       </Box>
+      <CardsHome />
     </Container>
   );
 };

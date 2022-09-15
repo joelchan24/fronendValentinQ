@@ -2,7 +2,6 @@ import { useState } from "react";
 import { addHabitWs } from "../../services/habitWs";
 
 import {
-  Avatar,
   Button,
   TextField,
   CssBaseline,
@@ -13,14 +12,21 @@ import {
   InputLabel,
   Select,
   MenuItem,
+  Modal,
+  Avatar,
 } from "@mui/material";
 import AddBoxTwoToneIcon from "@mui/icons-material/AddBoxTwoTone";
 
-export default function HabitForm() {
+export default function HabitForm({ props }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [reason, setReason] = useState("");
   const [timeSuggestion, setTimeSuggestion] = useState("");
+  const [message, setMessage] = useState("");
+  const [colorMessage, setColorMessage] = useState("");
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,14 +34,16 @@ export default function HabitForm() {
 
     try {
       const data = await addHabitWs(response);
-      console.log("que es data  ---> ", data);
-      alert("TESTING SUCCESS");
+      setColorMessage('green')
+      setMessage('micro habit created correctly')
+      handleOpen();
       setTitle("");
       setDescription("");
       setReason("");
     } catch (error) {
-      console.log(error.response.data.errorMessage);
-      alert(`ERROR : ${error.response.data.errorMessage}`);
+      setColorMessage("red");
+      setMessage(error.response.data.errorMessage);
+      handleOpen();
     }
   };
 
@@ -45,9 +53,9 @@ export default function HabitForm() {
       maxWidth="xs"
       sx={{
         height: "100%",
-        display:'flex',
-        flexDirection:'column',
-        justifyContent:'space-evenly'
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-evenly",
       }}
     >
       <CssBaseline />
@@ -58,12 +66,22 @@ export default function HabitForm() {
           alignItems: "center",
         }}
       >
-        <AddBoxTwoToneIcon sx={{ width: 75, height: 75 }} color="secondary" />
-        <Typography component="h1" variant="h5" sx={{fontWeight: 'light', mb:1}}>
+        <Avatar
+          sx={{ m: 1, bgcolor: "secondary.main", width: 75, height: 75 }}
+          mt={2}
+        >
+          <AddBoxTwoToneIcon sx={{ width: 50, height: 50 }} />
+        </Avatar>
+        <Typography
+          component="h1"
+          variant="h5"
+          sx={{ fontWeight: "light", mb: 1 }}
+        >
           create micro habit (admin only)
         </Typography>
-        <Typography sx={{fontWeight: 'light'}}>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum eaque incidunt molestias ipsum nihil aliquid illum eum quis tempora
+        <Typography sx={{ fontWeight: "light" }}>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum
+          eaque incidunt molestias ipsum nihil aliquid illum eum quis tempora
         </Typography>
       </Box>
 
@@ -87,7 +105,7 @@ export default function HabitForm() {
           required
           fullWidth
           multiline
-          maxRows={4}
+          rows={2}
           name="description"
           label="Description"
           value={description}
@@ -103,7 +121,6 @@ export default function HabitForm() {
           required
           fullWidth
           multiline
-          rows={3}
           name="reason"
           label="Reason"
           color="secondary"
@@ -143,6 +160,32 @@ export default function HabitForm() {
           Create
         </Button>
       </Box>
+      <div>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={props.style}>
+            <Typography
+              color={colorMessage}
+              id="modal-modal-title"
+              variant="h6"
+              component="h2"
+            >
+              Hey! 👇
+            </Typography>
+            <Typography
+              color={colorMessage}
+              id="modal-modal-description"
+              sx={{ mt: 2 }}
+            >
+              {message}
+            </Typography>
+          </Box>
+        </Modal>
+      </div>
     </Container>
   );
 }

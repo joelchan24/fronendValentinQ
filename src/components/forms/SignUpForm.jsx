@@ -9,6 +9,7 @@ import {
   Box,
   Typography,
   Container,
+  Modal
 } from "@mui/material";
 import LockPersonTwoToneIcon from "@mui/icons-material/LockPersonTwoTone";
 
@@ -19,8 +20,11 @@ export default function SignUpForm(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-
-  const navigate = useNavigate();
+const navigate = useNavigate();
+  const [message, setMessage] = useState('')
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,13 +39,11 @@ export default function SignUpForm(props) {
 
     try {
       const { data } = await signupWs(response);
-      console.log("que es data en signup ---->", data);
       props.authentication(data.user);
-      alert("TESTING SUCCESS");
       navigate("/profile");
     } catch (error) {
-      console.log(error.response.data.errorMessage);
-      alert(`ERROR : ${error.response.data.errorMessage}`);
+      setMessage(error.response.data.errorMessage)
+      handleOpen();
     }
   };
 
@@ -159,6 +161,23 @@ export default function SignUpForm(props) {
           </Grid>
         </Box>
       </Box>
+      <div>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={props.style}>
+            <Typography id="modal-modal-title" variant="h6" component="h2" color="red">
+              Hey! 👇
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }} color="red">
+              {message}
+            </Typography>
+          </Box>
+        </Modal>
+      </div>
     </Container>
   );
 }

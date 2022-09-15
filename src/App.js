@@ -3,13 +3,14 @@ import "./App.css";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import routes from "./config/routes";
 import { Navbar } from "./components";
+import { Footer } from './components'
 import { logoutWs } from "./services/auth-ws";
 
 import {
   ThemeProvider,
   CssBaseline,
-  Switch,
   Box,
+  Container
 } from "@mui/material";
 
 function App({lightTheme, darkTheme}) {
@@ -17,6 +18,18 @@ function App({lightTheme, darkTheme}) {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [isDark, setIsDark] = useState(false);
+
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+  };
 
   useEffect(() => {
     const user = localStorage.getItem("connected");
@@ -36,15 +49,13 @@ function App({lightTheme, darkTheme}) {
 
   const handleLogout = async () => {
     try {
-      const res = await logoutWs();
-      console.log("res del logout --->", res);
-      alert("LOGOUT SUCCESS");
+      await logoutWs();
       navigate("/");
       setPebblesUser(null);
       localStorage.removeItem("connected");
     } catch (error) {
-      console.log(error.response.data.errorMessage);
-      alert(`ERROR : ${error.response.data.errorMessage}`);
+      alert(error.response.data.errorMessage);
+
     }
   };
   if (isLoading) {
@@ -55,23 +66,16 @@ function App({lightTheme, darkTheme}) {
       <CssBaseline />
       <Box className="App">
         <Navbar pebblesUser={pebblesUser} handleLogout={handleLogout} setIsDark={setIsDark} isDark={isDark} />
-        <Box
-          sx={{
-            marginRight: 3,
-            display: "flex",
-            justifyContent: "flex-start",
-            alignItems: "center",
-          }}
-        >
-        </Box>
-
-        <Routes>
-          {routes({ pebblesUser, authentication, handleLogout }).map(
-            ({ path, element }) => (
-              <Route key={path} {...{ path, element }} />
-            )
-          )}
-        </Routes>
+        <Container sx={{ marginBottom:8 }} >
+          <Routes>
+            {routes({ pebblesUser, authentication, handleLogout, style}).map(
+              ({ path, element }) => (
+                <Route key={path} {...{ path, element }} />
+              )
+            )}
+          </Routes>
+        </Container>
+        <Footer />
       </Box>
     </ThemeProvider>
   );

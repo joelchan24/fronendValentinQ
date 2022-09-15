@@ -20,10 +20,8 @@ export default function EditPostForm(props) {
 
     try {
       const data = await addPostWs(response);
-      console.log('que es data --->',data);
       alert("TESTING SUCCESS");
     } catch (error) {
-      console.log(error.response.data.errorMessage);
       alert(`ERROR : ${error.response.data.errorMessage}`);
     }
   };

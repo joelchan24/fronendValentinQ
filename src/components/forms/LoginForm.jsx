@@ -10,13 +10,17 @@ import {
   Box,
   Typography,
   Container,
+  Modal,
 } from "@mui/material";
 import LockPersonTwoToneIcon from "@mui/icons-material/LockPersonTwoTone";
 
 export default function LoginForm(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
+  const [error, setError] = useState("");
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -25,20 +29,16 @@ export default function LoginForm(props) {
 
     try {
       const { data } = await loginWs(response);
-      console.log("que es data en login ---->", data.user);
       props.authentication(data.user);
 
-      if(data.user.role === 'User'){
-        navigate('/habits')
+      if (data.user.role === "User") {
+        navigate("/habits");
       } else {
-        navigate('/profile')
+        navigate("/profile");
       }
-
-
     } catch (error) {
-      console.log(error.response.data.errorMessage);
-      alert(`ERROR : ${error.response.data.errorMessage}`);
-
+      setError(error.response.data.errorMessage);
+      handleOpen();
     }
   };
 
@@ -53,9 +53,17 @@ export default function LoginForm(props) {
           alignItems: "center",
         }}
       >
-          <LockPersonTwoToneIcon sx={{ width: 75, height: 75 }} color="secondary" />
+        <LockPersonTwoToneIcon
+          sx={{ width: 75, height: 75 }}
+          color="secondary"
+        />
 
-        <Typography component="h1" variant="h4" color='secondary' sx={{fontWeight:'light'}}>
+        <Typography
+          component="h1"
+          variant="h4"
+          color="secondary"
+          sx={{ fontWeight: "light" }}
+        >
           login and continue with your habits
         </Typography>
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
@@ -92,19 +100,36 @@ export default function LoginForm(props) {
           >
             Login
           </Button>
-          <Grid container 
+          <Grid
+            container
             sx={{
-              display:'flex',
-              justifyContent:'center'
-            }} >
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
             <Grid item>
-              <Link to="/signup">
-                Don't have an account? Sign Up
-              </Link>
+              <Link to="/signup">Don't have an account? Sign Up</Link>
             </Grid>
           </Grid>
         </Box>
       </Box>
+      <div>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={props.style}>
+            <Typography color="red" id="modal-modal-title" variant="h6" component="h2">
+              ERROR!
+            </Typography>
+            <Typography color="red" id="modal-modal-description" sx={{ mt: 2 }}>
+              {error}
+            </Typography>
+          </Box>
+        </Modal>
+      </div>
     </Container>
   );
 }

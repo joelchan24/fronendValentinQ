@@ -16,7 +16,6 @@ const Community = (props) => {
       const res = await allPostsWs();
       setComments(res.data.posts);
     } catch (error) {
-      console.log(error.response.data.errorMessage);
       alert(`ERROR : ${error.response.data.errorMessage}`);
     }
   };
@@ -31,17 +30,23 @@ const Community = (props) => {
       await deletePostWs(id);
       deletePost(id);
     } catch (error) {
-      console.log(error.response.data.errorMessage);
       alert(`ERROR : ${error.response.data.errorMessage}`);
     }
   };
 
   return (
-    <Box>
-      <Typography variant="h2" align="center">
+    <Box sx={{
+      display:'flex',
+      justifyContent:'center'
+    }}>
+      <Box sx={{maxWidth:700}} mt={2} >
+      <Typography sx={{ typography: { sm: "h2", xs: "h4" } }} >
         Community
       </Typography>
-      <CreatePostForm setComments={setComments} />
+      <Typography sx={{ typography: { sm: "h4", xs: "h6" } }}>
+        share with others a habit that works for you or you can just leave a comment
+      </Typography>
+      <CreatePostForm setComments={setComments} props={props} />
       <Box sx={{
         display:"flex",
         justifyContent:'center',
@@ -68,10 +73,9 @@ const Community = (props) => {
                 alignItems: "center",
               }}
             >
-              {console.log(comments)}
-              <Typography variant="body1">{comment.comment}</Typography>
+              <Typography variant="subtitle1">{comment.comment}</Typography>
 
-              {comment.author === props.pebblesUser.username ? (
+              {comment.author === props.pebblesUser.username || props.pebblesUser.role === "Admin" ? (
                 <Box
                   sx={{
                     width: "100%",
@@ -107,6 +111,7 @@ const Community = (props) => {
           ))}
         </Box>
       </Box>
+    </Box>
     </Box>
   );
 };
