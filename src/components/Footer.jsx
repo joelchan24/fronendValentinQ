@@ -5,13 +5,14 @@ import {
 } from "@mui/material";
 
 import { GitHub, LinkedIn } from "@mui/icons-material";
+import zIndex from "@mui/material/styles/zIndex";
 
 const Footer = () => {
   return (
     <Box className="footer--pin" sx={{
       borderTop:1,
-      borderColor:'secondary.dark'
-      
+      borderColor:'secondary.dark',
+      zIndex:100
     }} bgcolor="primary.main" >
       <Box>
         <Typography
