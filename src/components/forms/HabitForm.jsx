@@ -73,15 +73,19 @@ export default function HabitForm({ props }) {
           <AddBoxTwoToneIcon sx={{ width: 50, height: 50 }} />
         </Avatar>
         <Typography
-          component="h1"
-          variant="h5"
-          sx={{ fontWeight: "light", mb: 1 }}
+          sx={{ 
+            mb: 1,
+            typography: { sm: "h5", xs: "subtitle2" },
+          }}
+          color="secondary"
         >
-          create micro habit (admin only)
+          Create micro habit (admin only)
         </Typography>
-        <Typography sx={{ fontWeight: "light" }}>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum
-          eaque incidunt molestias ipsum nihil aliquid illum eum quis tempora
+        <Typography sx={{ 
+          fontWeight: "light",
+          typography: { sm: "h6", xs: "subtitle2" }
+        }}>
+        Create a micro habit here for users to follow and implement in their lives!
         </Typography>
       </Box>
 

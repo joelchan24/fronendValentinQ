@@ -40,7 +40,9 @@ export default function EditVisionForm({
 
   const elInput = useRef("input");
 
-  const openImage = (e) => { elInput.current.click() };
+  const openImage = (e) => {
+    elInput.current.click();
+  };
 
   const updateImage = async (e) => {
     const formData = new FormData();
@@ -49,23 +51,30 @@ export default function EditVisionForm({
       const res = await singleImageWs(formData);
       setVisionOne(res.data.url.uri);
     } catch (error) {
-      alert(error)
+      alert(error);
     }
   };
 
-
   return (
-    <Container component="main" maxWidth="xs">
+    <Container
+      component="main"
+      maxWidth="xs"
+      sx={{
+        height: "100%",
+      }}
+    >
       <CssBaseline />
       <Box
+        pb={4.5}
         sx={{
-          marginTop: 8,
+          height: "100%",
           display: "flex",
           flexDirection: "column",
+          justifyContent: "space-between",
           alignItems: "center",
         }}
       >
-        <Typography component="h1" variant="h5">
+        <Typography sx={{ typography: { sm: "h4", xs: "h5" } }} pt={4} >
           Edit Vision Board
         </Typography>
 
@@ -73,7 +82,7 @@ export default function EditVisionForm({
           <Box
             sx={{
               display: "flex",
-              flexWrap: "wrap",
+              flexDirection: "column",
             }}
           >
             <Box
@@ -83,11 +92,30 @@ export default function EditVisionForm({
                 alignItems: "center",
               }}
             >
-              <img src={typeof visionOne != "string" ? URL.createObjectURL(visionOne) : visionOne}
-                width={125} alt="picOne"
+              <img
+                src={
+                  typeof visionOne != "string"
+                    ? URL.createObjectURL(visionOne)
+                    : visionOne
+                }
+                width={125}
+                alt="picOne"
               />
-              <input hidden accept="image/*" type="file" ref={elInput} onChange={updateImage} />
-              <Button variant="contained" component="label" size="small" color="secondary" onClick={openImage} >
+              <input
+                hidden
+                accept="image/*"
+                type="file"
+                ref={elInput}
+                onChange={updateImage}
+              />
+              <Button
+                variant="contained"
+                component="label"
+                size="small"
+                color="secondary"
+                onClick={openImage}
+                sx={{ marginTop: 3 }}
+              >
                 upload
               </Button>
             </Box>
@@ -106,15 +134,18 @@ export default function EditVisionForm({
             type="generalVision"
             id="generalVision"
             autoComplete="current-generalVision"
+            sx={{ marginTop: 10 }}
           />
-          <Button
-            variant="contained"
-            color="secondary"
-            onClick={handleSubmit}
-            fullWidth
-          >
-            Edit my vision board
-          </Button>
+          <>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={handleSubmit}
+              fullWidth
+            >
+              Edit my vision board
+            </Button>
+          </>
         </Box>
       </Box>
     </Container>

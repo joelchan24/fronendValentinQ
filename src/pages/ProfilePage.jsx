@@ -49,11 +49,11 @@ const ProfilePage = (props) => {
                 pt:3,
                 pl:6.2,
                 pr:6.2,
-                pb:3
+                pb:4.5
               }}
             >
-              <Box>
-                <Typography variant="h4"sx={{fontWeight: 'light'}} >{showUsername}'s profile</Typography>
+              <Box mt={2}>
+                <Typography sx={{ typography: { sm: "h4", xs: "h5" } }} >{showUsername}'s profile</Typography>
               </Box>
               <Box>
                 <Avatar src={showAvatar} sx={{ width: 130, height: 130 }} />
@@ -94,7 +94,12 @@ const ProfilePage = (props) => {
           </Paper>
         )}
         {!visionEdit && props.pebblesUser.role === "User" ? (
-          <Paper elevation={2}>
+          <Paper elevation={2} 
+          sx={{
+            display:'flex',
+            flexDirection:'column',
+            justifyContent:'space-between'
+          }} >
             <Grid
               padding={5}
               sx={{
@@ -104,9 +109,9 @@ const ProfilePage = (props) => {
                 alignItems: "center",
               }}
             >
-              <Typography variant="h4">My Vision Board</Typography>
-              <Box>
-                <img src={showVisionOne} alt="pic one" width={300} />
+              <Typography sx={{ typography: { sm: "h4", xs: "h5" }, marginBottom:5 }}>My Vision Board</Typography>
+              <Box mb={6} >
+                <img src={showVisionOne} alt="pic one" width={200} />
               </Box>
               <Typography variant="subtitle1">{showGeneralVision}</Typography>
             </Grid>

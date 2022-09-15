@@ -54,6 +54,10 @@ export default function Navbar({ pebblesUser, handleLogout, setIsDark , isDark }
     navigate("/login");
   };
 
+  const navigateSignUp = () => {
+    navigate('/signup')
+  }
+
   function handleListKeyDown(event) {
     if (event.key === "Tab") {
       event.preventDefault();
@@ -99,8 +103,19 @@ export default function Navbar({ pebblesUser, handleLogout, setIsDark , isDark }
                     onClick={navigateLogin}
                     color="secondary"
                     size="small"
+                    sx={{marginRight:1}}
                   >
                     Login
+                  </Button>
+                </Box>
+                <Box ml={1}>
+                  <Button
+                    variant="contained"
+                    onClick={navigateSignUp}
+                    color="secondary"
+                    size="small"
+                  >
+                    Sign up
                   </Button>
                 </Box>
               </>
