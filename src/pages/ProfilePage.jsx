@@ -52,8 +52,8 @@ const ProfilePage = (props) => {
                 pb:4.5
               }}
             >
-              <Box>
-                <Typography variant="h4"sx={{fontWeight: 'light'}} >{showUsername}'s profile</Typography>
+              <Box mt={2}>
+                <Typography sx={{ typography: { sm: "h4", xs: "h5" } }} >{showUsername}'s profile</Typography>
               </Box>
               <Box>
                 <Avatar src={showAvatar} sx={{ width: 130, height: 130 }} />

@@ -103,6 +103,7 @@ export default function Navbar({ pebblesUser, handleLogout, setIsDark , isDark }
                     onClick={navigateLogin}
                     color="secondary"
                     size="small"
+                    sx={{marginRight:1}}
                   >
                     Login
                   </Button>

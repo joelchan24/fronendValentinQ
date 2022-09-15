@@ -65,7 +65,6 @@ export default function EditVisionForm({
     >
       <CssBaseline />
       <Box
-        p={1}
         pb={4.5}
         sx={{
           height: "100%",
@@ -75,7 +74,7 @@ export default function EditVisionForm({
           alignItems: "center",
         }}
       >
-        <Typography sx={{ typography: { sm: "h4", xs: "h5" } }}>
+        <Typography sx={{ typography: { sm: "h4", xs: "h5" } }} pt={4} >
           Edit Vision Board
         </Typography>
 
