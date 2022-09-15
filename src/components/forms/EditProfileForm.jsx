@@ -76,11 +76,14 @@ export default function EditProfileForm({
         }}
       >
         <Box>
-          <Typography component="h1" variant="h4" sx={{ fontWeight: "light", mt:2 }}>
+          <Typography color="secondary" component="h1" variant="h4" sx={{ fontWeight: "light", mt:2 }}>
             Edit my Profile
           </Typography>
-          <Typography sx={{ fontWeight: "light", mt:2 }} >
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis cum ab vitae quia illum omnis.
+          <Typography sx={{ 
+            typography: { sm: "h6", xs: "subtitle2" }, 
+            mt:2 
+          }} >
+            You can edit your profile photo and your name and username here.
           </Typography>
         </Box>
 
@@ -168,7 +171,7 @@ export default function EditProfileForm({
             color="secondary"
             onClick={handleSubmit}
             variant="contained"
-            sx={{ mt: 6, mb: 3.4 }}
+            sx={{ mt: 6, mb: 4.5 }}
           >
             Edit Profile
           </Button>

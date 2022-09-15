@@ -73,7 +73,11 @@ const Community = (props) => {
                 alignItems: "center",
               }}
             >
-              <Typography variant="subtitle1">{comment.comment}</Typography>
+              <Typography
+                sx={{ typography: { sm: "h6", xs: "subtitle1" } }}
+              >
+                {comment.comment}
+                </Typography>
 
               {comment.author === props.pebblesUser.username || props.pebblesUser.role === "Admin" ? (
                 <Box

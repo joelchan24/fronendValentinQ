@@ -66,7 +66,6 @@ const HomePage = (props) => {
             </Typography>
             <Typography
               sx={{ typography: { sm: "h2", xs: "h5" } }}
-              fontWeight="light"
               color="secondary"
             >
               PEBBLES
@@ -82,26 +81,18 @@ const HomePage = (props) => {
         </Box>
       </Box>
       <Box m={2}>
-        <Box maxWidth={850}>
-          <Typography sx={{ typography: { sm: "h4", xs: "subtitle2" } }}>
+        <Box maxWidth={870}>
+          <Typography
+            sx={{
+              typography: {
+                sm: "h4",
+                xs: "subtitle2",
+              },
+            }}
+          >
             Pebbles is a self-improvement app that inspires you to pursue new
             habits and share your progress and ideas with other users.
           </Typography>
-        </Box>
-        <Box sx={{display:'flex', justifyContent:'center'}} >
-          <Box mt={2} width={300}>
-            <Button
-              color="secondary"
-              variant="contained"
-              fullWidth
-              onClick={navigateSignup}
-              sx={{
-                borderRadius: 10,
-              }}
-            >
-              sign up
-            </Button>
-          </Box>
         </Box>
       </Box>
       <CardsHome />
