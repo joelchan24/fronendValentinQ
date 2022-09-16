@@ -63,7 +63,7 @@ const Community = (props) => {
             },
           }}
         >
-          {comments.reverse().map((comment) => (
+          {comments.map((comment) => (
             <Paper
               sx={{
                 padding: 1,
