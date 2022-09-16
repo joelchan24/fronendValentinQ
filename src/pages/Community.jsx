@@ -63,7 +63,7 @@ const Community = (props) => {
             },
           }}
         >
-          {comments.map((comment) => (
+          {comments.map( comment => (
             <Paper
               sx={{
                 padding: 1,
@@ -72,7 +72,9 @@ const Community = (props) => {
                 justifyContent: "space-between",
                 alignItems: "center",
               }}
+              id={comment._id}
             >
+              {console.log(comment)}
               <Typography
                 sx={{ typography: { sm: "h6", xs: "subtitle1" } }}
               >
@@ -121,9 +123,3 @@ const Community = (props) => {
 };
 
 export default Community;
-
-/* 
-
-
-
-*/
