@@ -10,6 +10,11 @@ for testing purposes you can access to an admin account using the following user
 username: valeQuiroga
 password: Password1
 
+
+if you want to access using an allready user created you can use
+username: adrian
+password: Password1
+
 ## Features
 
 ## Tech
