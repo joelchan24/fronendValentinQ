@@ -1,6 +1,7 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { updateProfileWs } from "../../services/user-admin-ws";
 import { singleImageWs } from "../../services/updatePicWs";
+import { profileWs } from "../../services/user-admin-ws";
 
 import {
   Avatar,
@@ -21,11 +22,25 @@ export default function EditProfileForm({
   setShowUsername,
   setShowAvatar,
 }) {
-  const [firstName, setFirstName] = useState(props.pebblesUser.firstName);
-  const [lastName, setLastName] = useState(props.pebblesUser.lastName);
-  const [username, setUsername] = useState(props.pebblesUser.username);
+  const [firstName, setFirstName] = useState();
+  const [lastName, setLastName] = useState();
+  const [username, setUsername] = useState();
+  const [loading, setLoading] = useState(false)
 
   const [avatarUrl, setAvatarUrl] = useState(props.pebblesUser.avatarUrl);
+
+  const prevInfo = async () => {
+    const data = await profileWs();
+    setFirstName(data.data.user.firstName);
+    setLastName(data.data.user.lastName);
+    setUsername(data.data.user.username)
+    setAvatarUrl(data.data.user.avatarUrl)
+    setLoading(true)
+  };
+
+  useEffect(() => {
+    prevInfo()
+  }, [])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,6 +51,7 @@ export default function EditProfileForm({
         username,
         avatarUrl,
       });
+
       setShowLastName(lastName);
       setShowName(firstName);
       setShowUsername(username);
@@ -60,13 +76,15 @@ export default function EditProfileForm({
         setAvatarUrl(res.data.url.uri);
       })
       .catch((error) => {
-        alert(error)});
+        alert(error);
+      });
   };
 
   return (
     <Container component="main" maxWidth="xs" sx={{ height: "100%" }}>
       <CssBaseline />
-      <Box
+      {loading && (
+        <Box
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -76,22 +94,31 @@ export default function EditProfileForm({
         }}
       >
         <Box>
-          <Typography color="secondary" component="h1" variant="h4" sx={{ fontWeight: "light", mt:2 }}>
+          <Typography
+            color="secondary"
+            component="h1"
+            variant="h4"
+            sx={{ fontWeight: "light", mt: 2 }}
+          >
             Edit my Profile
           </Typography>
-          <Typography sx={{ 
-            typography: { sm: "h6", xs: "subtitle2" }, 
-            mt:2 
-          }} >
+          <Typography
+            sx={{
+              typography: { sm: "h6", xs: "subtitle2" },
+              mt: 2,
+            }}
+          >
             You can edit your profile photo and your name and username here.
           </Typography>
         </Box>
 
-        <Box sx={{
-          display:'flex',
-          flexDirection:'column',
-          alignItems:'center'
-        }} >
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
           <Avatar
             src={
               typeof avatarUrl != "string"
@@ -116,7 +143,7 @@ export default function EditProfileForm({
             size="small"
             color="secondary"
             onClick={openImage}
-            sx={{mt:1}}
+            sx={{ mt: 1 }}
           >
             Upload Photo
           </Button>
@@ -130,7 +157,7 @@ export default function EditProfileForm({
                 name="firstName"
                 required
                 fullWidth
-                defaultValue={props.pebblesUser.firstName}
+                defaultValue={firstName}
                 id="firstName"
                 label="First Name"
                 autoFocus
@@ -142,7 +169,7 @@ export default function EditProfileForm({
               <TextField
                 required
                 fullWidth
-                defaultValue={props.pebblesUser.lastName}
+                defaultValue={lastName}
                 id="lastName"
                 label="Last Name"
                 name="lastName"
@@ -155,7 +182,7 @@ export default function EditProfileForm({
               <TextField
                 required
                 fullWidth
-                defaultValue={props.pebblesUser.username}
+                defaultValue={username}
                 id="username"
                 label="username Address"
                 name="username"
@@ -177,6 +204,8 @@ export default function EditProfileForm({
           </Button>
         </Box>
       </Box>
+      )}
+      
     </Container>
   );
 }
