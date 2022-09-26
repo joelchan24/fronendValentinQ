@@ -59,7 +59,7 @@ const HomePage = (props) => {
               sx={{ typography: { sm: "h2", xs: "h5" } }}
               color="secondary"
             >
-              PEBBLES
+              PEBBLES.
             </Typography>
           </Box>
         </Box>
