@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { updateProfileWs } from "../../services/user-admin-ws";
+import { profileWs, updateProfileWs } from "../../services/user-admin-ws";
 import { singleImageWs } from "../../services/updatePicWs";
 
 import {
@@ -16,12 +16,24 @@ export default function EditVisionForm({
   setVisionEdit,
   setShowVisionOne,
   setShowGeneralVision,
+  showGeneralVision
 }) {
   const [visionOne, setVisionOne] = useState(props.pebblesUser.visionOne);
+  const [generalVision, setGeneralVision] = useState();
+  const [loading , setLoading] = useState(false)
 
-  const [generalVision, setGeneralVision] = useState(
-    props.pebblesUser.generalVision
-  );
+  const prevInfo = async () => {
+    const data = await profileWs()
+    setVisionOne(data.data.user.visionOne)
+    setGeneralVision(data.data.user.generalVision)
+    setLoading(true)
+  }
+
+  useEffect(() => {
+    prevInfo()
+  }, [])
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -64,7 +76,8 @@ export default function EditVisionForm({
       }}
     >
       <CssBaseline />
-      <Box
+      {loading && (
+        <Box
         pb={4.5}
         sx={{
           height: "100%",
@@ -127,7 +140,7 @@ export default function EditVisionForm({
             multiline
             rows={5}
             onChange={(e) => setGeneralVision(e.target.value)}
-            defaultValue="describe in this space how you would like to feel with new habits implemented in your life"
+            defaultValue={generalVision}
             color="secondary"
             name="generalVision"
             label="General Vision"
@@ -148,6 +161,8 @@ export default function EditVisionForm({
           </>
         </Box>
       </Box>
+      )}
+      
     </Container>
   );
 }

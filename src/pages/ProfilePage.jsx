@@ -159,6 +159,7 @@ const ProfilePage = (props) => {
                   setVisionEdit={setVisionEdit}
                   setShowVisionOne={setShowVisionOne}
                   setShowGeneralVision={setShowGeneralVision}
+                  showGeneralVision={showGeneralVision}
                 />
               </Paper>
             )
