@@ -86,7 +86,7 @@ export default function Navbar({ pebblesUser, handleLogout, setIsDark , isDark }
             <Link to={"/"}>
               <img
                 src={!isDark ? "https://res.cloudinary.com/duavnrhnp/image/upload/v1663003383/logoAzul_g93lki.png" : "https://res.cloudinary.com/duavnrhnp/image/upload/v1663003383/logoBlanco_iuahoa.png"}
-                height={35}
+                height={33}
                 alt="logo"
               />
             </Link>
