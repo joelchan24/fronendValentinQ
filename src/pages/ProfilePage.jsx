@@ -30,7 +30,7 @@ const ProfilePage = (props) => {
     testing();
   }, []);
 
-  return (
+  return props.pebblesUser ? (
     <div>
       {showName && (
         <Box
@@ -167,6 +167,8 @@ const ProfilePage = (props) => {
         </Box>
       )}
     </div>
+  ) : (
+    <h1>Hey! you need to be logged in to see this content </h1>
   );
 };
 
