@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { CreatePostForm } from "../components";
 import { allPostsWs, deletePostWs } from "../services/communityWs";
-import { Delete } from "@mui/icons-material";
+import { Delete  } from "@mui/icons-material";
 import { Paper, Button, Box, Typography } from "@mui/material";
 
 const Community = (props) => {
@@ -34,7 +34,6 @@ const Community = (props) => {
     }
   };
 
-  console.log(props.pebblesUser);
   return props.pebblesUser ? (
     <Box
       sx={{
@@ -78,9 +77,8 @@ const Community = (props) => {
                   justifyContent: "space-between",
                   alignItems: "center",
                 }}
-                id={comment._id}
+                key={comment._id}
               >
-                {console.log(comment)}
                 <Typography sx={{ typography: { sm: "h6", xs: "subtitle1" } }}>
                   {comment.comment}
                 </Typography>
