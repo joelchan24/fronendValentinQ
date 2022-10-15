@@ -34,6 +34,8 @@ const Habits = (props) => {
     }
   }
 
+  
+
   const [habits, setHabits] = useState([]);
 
   const [filteringHabits, setFilteringHabits] = useState([]);
@@ -76,7 +78,7 @@ const Habits = (props) => {
     setFilteringHabits(newHabits);
   };
 
-  return (
+  return props.pebblesUser ?  
     <Box>
       <Typography variant="h2">Micro-Habits</Typography>
       <Box
@@ -93,7 +95,7 @@ const Habits = (props) => {
         >
           All
         </Button>
-        {allCategories.map((category) => (
+        {allCategories.map((category, index) => (
           <Button
             size="large"
             color="secondary"
@@ -177,7 +179,8 @@ const Habits = (props) => {
         ))}
       </Box>
     </Box>
-  );
+  : <h1>Hey! you need to be logged in to see this content </h1> 
+  
 };
 
 export default Habits;
