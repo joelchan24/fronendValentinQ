@@ -14,26 +14,8 @@ const ProfilePage = (props) => {
   const [showVisionOne, setShowVisionOne] = useState();
   const [showGeneralVision, setShowGeneralVision] = useState();
 
-  // https://www.verywellmind.com/abdominal-breathing-2584115
-  // https://sebhastian.com/setinterval-react/
-
-  const [breathWord, setBreathWord] = useState(
-    "follow the instructions that will appear here"
-  );
-
-  const [timer, setTimer] = useState(false);
-  const [btnTxt, setBtnTxt] = useState('Start Breathing Excercise')
-
   let randomFact = randomFacts[Math.floor(Math.random() * randomFacts.length)];
-
-  const breathFunction = () => {
-    timer ? setTimer(false) : setTimer(true)
-    timer ? setBtnTxt('Start Breathing Excercise') : setBtnTxt('Stop Breathing Excercise')
-
-  };
-
-  console.log(timer)
-
+  
   const testing = async () => {
     const data = await profileWs();
     setShowName(data.data.user.firstName);
@@ -171,62 +153,6 @@ const ProfilePage = (props) => {
                     Edit my vision board
                   </Button>
                 </Grid>
-              </Paper>
-              <Paper
-                elevation={2}
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Grid
-                  padding={5}
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                  }}
-                >
-                  <Typography
-                    sx={{ typography: { sm: "h4", xs: "h5" }, marginBottom: 2 }}
-                  >
-                    Try the 4-7-8 Breathing
-                  </Typography>
-                  <Typography
-                    sx={{ typography: { sm: "h5", xs: "h6" }, marginBottom: 2 }}
-                  >
-                    Why ?
-                  </Typography>
-                  <Typography
-                    sx={{ typography: { sm: "h6", xs: "subtitle1" } }}
-                  >
-                    The 4-7-8 breathing exercise, also called the relaxing
-                    breath, acts as a natural tranquilizer for the nervous
-                    system.
-                  </Typography>
-                  <Typography>{breathWord}</Typography>
-                  <Button
-                    variant="contained"
-                    color="secondary"
-                    fullWidth
-                    onClick={() => {
-                      breathFunction();
-                    }}
-                  >
-                    {btnTxt}
-                  </Button>
-                </Grid>
-                <Grid
-                  padding={5}
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                  }}
-                ></Grid>
               </Paper>
             </>
           ) : (
