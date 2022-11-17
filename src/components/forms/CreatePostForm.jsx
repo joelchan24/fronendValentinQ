@@ -40,7 +40,7 @@ export default function CreatePostForm({ setComments, props }) {
     const response = { comment };
 
     try {
-      const data = await addPostWs(response);
+      await addPostWs(response);
       getAllPosts();
       setComment("");
       setColorMessage('green')

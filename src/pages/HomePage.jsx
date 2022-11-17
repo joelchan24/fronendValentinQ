@@ -1,16 +1,8 @@
 import { CardsHome } from "../components";
 
-import {
-  Container,
-  Typography,
-  Box,
-} from "@mui/material";
+import { Container, Typography, Box } from "@mui/material";
 
-import { useNavigate } from "react-router-dom";
-
-const HomePage = (props) => {
-  const navigate = useNavigate();
-
+const HomePage = () => {
   return (
     <Container
       sx={{

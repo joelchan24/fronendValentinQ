@@ -15,7 +15,7 @@ const ProfilePage = (props) => {
   const [showGeneralVision, setShowGeneralVision] = useState();
 
   let randomFact = randomFacts[Math.floor(Math.random() * randomFacts.length)];
-
+  
   const testing = async () => {
     const data = await profileWs();
     setShowName(data.data.user.firstName);
@@ -105,52 +105,56 @@ const ProfilePage = (props) => {
             </Paper>
           )}
           {!visionEdit && props.pebblesUser.role === "User" ? (
-            <Paper
-              elevation={2}
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-              }}
-            >
-              <Grid
-                padding={5}
+            <>
+              <Paper
+                elevation={2}
                 sx={{
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "space-between",
-                  alignItems: "center",
                 }}
               >
-                <Typography
-                  sx={{ typography: { sm: "h4", xs: "h5" }, marginBottom: 5 }}
+                <Grid
+                  padding={5}
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
                 >
-                  My Vision Board
-                </Typography>
-                <Box mb={6}>
-                  <img src={showVisionOne} alt="pic one" width={200} />
-                </Box>
-                <Typography variant="subtitle1">{showGeneralVision}</Typography>
-              </Grid>
-              <Grid
-                padding={5}
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                }}
-              >
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  fullWidth
-                  onClick={() => setVisionEdit((prevState) => !prevState)}
+                  <Typography
+                    sx={{ typography: { sm: "h4", xs: "h5" }, marginBottom: 5 }}
+                  >
+                    My Vision Board
+                  </Typography>
+                  <Box mb={6}>
+                    <img src={showVisionOne} alt="pic one" width={200} />
+                  </Box>
+                  <Typography variant="subtitle1">
+                    {showGeneralVision}
+                  </Typography>
+                </Grid>
+                <Grid
+                  padding={5}
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
                 >
-                  Edit my vision board
-                </Button>
-              </Grid>
-            </Paper>
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    fullWidth
+                    onClick={() => setVisionEdit((prevState) => !prevState)}
+                  >
+                    Edit my vision board
+                  </Button>
+                </Grid>
+              </Paper>
+            </>
           ) : (
             props.pebblesUser.role === "User" && (
               <Paper elevation={2}>

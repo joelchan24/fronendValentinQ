@@ -19,7 +19,7 @@ export default function EditPostForm(props) {
     const response = { comment };
 
     try {
-      const data = await addPostWs(response);
+        await addPostWs(response);
       alert("TESTING SUCCESS");
     } catch (error) {
       alert(`ERROR : ${error.response.data.errorMessage}`);
