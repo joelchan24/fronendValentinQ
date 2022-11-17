@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'pebblesFront'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_3499B39569E34EA4A0B9B1B22C51CD1B }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_17569438E88642ABA3AFF49BA049C8A6 }}
           package: .
