@@ -100,5 +100,7 @@ stages:
                     appType: 'webAppLinux'
                     appName: 'fronend'
                     package: '$(System.DefaultWorkingDirectory)'
+                    runtimeStack: 'NODE|16-lts'
+                    startUpCommand: 'npm start'
 
                   
