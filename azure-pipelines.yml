@@ -19,6 +19,10 @@ variables:
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
+  directory: react-azure-demo
+  stage: development
+  serviceConnection: REACT_AZURE_DEMO
+  appServiceName: reactazuredemo
 
 stages:
 - stage: Build
