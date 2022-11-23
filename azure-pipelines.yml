@@ -101,6 +101,6 @@ stages:
                     appName: 'fronend'
                     package: '$(System.DefaultWorkingDirectory)'
                     runtimeStack: 'NODE|16-lts'
-                    startUpCommand: 'pm2 serve /home/site/wwwroot --no-daemon'
+                   
 
                   
