@@ -70,6 +70,8 @@ stages:
       displayName: 'Publish Build Artifacts'
       inputs: 
         pathtoPublish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+        ArtifactName: 'drop'
+        publishLocation: 'Container'
 
 - stage: Deploy
   displayName: Deploy stage
@@ -79,22 +81,24 @@ stages:
   - deployment: Deploy
     displayName: Deploy
     environment: $(environmentName)
-    pool:
-      vmImage: $(vmImageName)
     strategy:
       runOnce:
         deploy:
           steps:
-          - task: AzureRmWebAppDeployment@4
-            displayName: 'Azure App Service Deploy: fronend'
-            inputs:
-              azureSubscription: $(azureSubscription)
-              appType: webAppLinux
-              WebAppName: $(webAppName)
-              packageForLinux: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
-              RuntimeStack: 'NODE|10.10'
-              StartupCommand: 'npm run start'
-              ScriptType: 'Inline Script'
-              InlineScript: |
-                npm install
-                npm run build --if-present
+                - checkout: none
+                - task: DownloadPipelineArtifact@2
+                  displayName: 'Download Pipeline Artifact'
+                  inputs:
+                    buildType: 'current'
+                    artifactName: 'drop'
+                    targetPath: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+
+                - task: AzureRmWebAppDeployment@3
+                  displayName: 'Azure App Service Deploy: React front end'
+                  inputs:
+                    azureSubscription: 'Suscripción de Visual Studio Professional (42b98f39-1c88-4895-874a-9c4f440839bb)'
+                    appType: 'app'
+                    WebAppName: 'fronend'
+                    Package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+                    UseWebDeploy: true
+                    RemoveAdditionalFilesFlag: true
