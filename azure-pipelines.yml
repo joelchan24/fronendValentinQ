@@ -99,4 +99,6 @@ stages:
                     azureSubscription: 'Suscripción de Visual Studio Professional (42b98f39-1c88-4895-874a-9c4f440839bb)'
                     appType: 'webAppLinux'
                     appName: 'fronend'
+                    package: '$(System.DefaultWorkingDirectory)/*.zip'
+
                   
